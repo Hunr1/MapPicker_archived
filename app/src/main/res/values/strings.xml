@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MapPicker</string>
+    <string name="SearchHint">Write ID here</string>
+    <string name="BtnSearchText">Search</string>
+    <string name="BtnNewTournamentText">New tournament</string>
+    <string name="BtnCheckTournamentText">Select</string>
+    <string name="ListviewLabelText">Choose a tournament below:</string>
 </resources>
