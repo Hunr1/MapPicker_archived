@@ -1,8 +1,9 @@
 package ryhma4.mappicker;
 
-public class Tournament {
+public class Tournament extends Match {
 
     private String tournamentID;
+
 
     public String getTournamentID() {
         return tournamentID;
