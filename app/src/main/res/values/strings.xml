@@ -5,4 +5,10 @@
     <string name="BtnNewTournamentText">New tournament</string>
     <string name="BtnCheckTournamentText">Select</string>
     <string name="ListviewLabelText">Choose a tournament below:</string>
+
+    <!-- luo_uusi_turnaus.xml strings: -->
+    <string name="luo_GameNameText">Choose a game</string>
+    <string name="luo_matchFormatText">Choose a format</string>
+    <string name="luo_SelectTeamsText">Select teams</string>
+    <string name="luo_generateID">Generate ID</string>
 </resources>
