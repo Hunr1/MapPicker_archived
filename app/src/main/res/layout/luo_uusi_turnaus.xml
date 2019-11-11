@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="20">
+        android:layout_weight="2">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,12 +24,12 @@
             android:text="@string/luo_GameNameText"
             android:textSize="18sp" />
 
-
         <Spinner
             android:id="@+id/spinnerGame"
             android:layout_marginStart="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:entries="@array/spinnerGameItems"/>
 
     </LinearLayout>
 
@@ -36,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="20">
+        android:layout_weight="2">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -49,38 +50,73 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinnerFormat"
-                android:layout_marginStart="16dp"/>
+                android:layout_marginStart="16dp"
+                android:entries="@array/spinnerFormatItems"/>
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="20">
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/luo_tvTeams"
             android:text="@string/luo_SelectTeamsText"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_weight="10"/>
 
-        <Spinner
-            android:layout_width="match_parent"
+        <EditText
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/spinnerTeams"
-            android:layout_marginStart="16dp"/>
+            android:inputType="text"
+            android:id="@+id/editTextTeams"
+            android:layout_marginStart="16dp"
+            android:layout_weight="40" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="20"
+            android:text="@string/luo_btnAdd"/>
 
     </LinearLayout>
 
-    <Button
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:orientation="vertical">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lvTeams"/>
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:text="@string/luo_generateID"
-        android:id="@+id/btnGenerate"/>
+        android:orientation="horizontal">
 
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnCancel"
+            android:layout_weight="50"
+            android:text="@string/luo_Cancel"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:text="@string/luo_generateID"
+            android:id="@+id/btnGenerate"/>
+    </LinearLayout>
 
 </LinearLayout>

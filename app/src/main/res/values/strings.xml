@@ -9,6 +9,15 @@
     <!-- luo_uusi_turnaus.xml strings: -->
     <string name="luo_GameNameText">Choose a game</string>
     <string name="luo_matchFormatText">Choose a format</string>
-    <string name="luo_SelectTeamsText">Select teams</string>
+    <string name="luo_SelectTeamsText">Add teams</string>
     <string name="luo_generateID">Generate ID</string>
+    <string name="luo_Cancel">Cancel</string>
+    <string name="luo_btnAdd">Add</string>
+    <string-array name="spinnerGameItems">
+        <item>Counter Strike: Global Offensive</item>
+    </string-array>
+    <string-array name="spinnerFormatItems">
+        <item>Best of 3</item>
+        <item>Best of 5</item>
+    </string-array>
 </resources>
