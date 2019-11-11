@@ -5,8 +5,8 @@ public class TournamentEngine {
 
     private ArrayList<Tournament> allTournaments = new ArrayList<>();
 
-    public void addTournament(Tournament person) {
-        allTournaments.add(person);
+    public void addTournament(Tournament tournament) {
+        allTournaments.add(tournament);
     }
 
     public int countOfTournaments() {

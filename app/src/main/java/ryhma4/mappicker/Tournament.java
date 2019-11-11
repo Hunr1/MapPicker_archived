@@ -12,4 +12,5 @@ public class Tournament extends Match {
     public void setTournamentID(String tournamentID) {
         this.tournamentID = tournamentID;
     }
+
 }
