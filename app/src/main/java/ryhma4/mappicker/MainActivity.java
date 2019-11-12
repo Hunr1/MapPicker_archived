@@ -14,9 +14,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, DatabaseAsyncTask.OnSleepProgressUpdate{
 
+    private DatabaseAsyncTask getFromDB = new DatabaseAsyncTask();
+    TournamentEngine tournamentEngine;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +28,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.searchBtn).setOnClickListener(this);
         ListView tournamentList = findViewById(R.id.TournamentsList);
         tournamentList.setOnItemClickListener(this);
-        TournamentEngine tournamentEngine = TournamentApplication.getEngine();
+        tournamentEngine = TournamentApplication.getEngine();
 
-       tournamentEngine.addTournament(luoTestiturnaus());
-        paivitaLista();
+        getFromDB.setCallback(this);
+        getFromDB.execute("");
+
+       /*tournamentEngine.addTournament(luoTestiturnaus());
+        paivitaLista();*/
     }
 
     @Override
@@ -83,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-    public Tournament luoTestiturnaus()
+   /* public Tournament luoTestiturnaus()
     {
         Tournament testiTurnee = new Tournament();
         ArrayList<String> maps = new ArrayList<>();
@@ -98,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         return testiTurnee;
 
-    }
+    }*/
 
     private void paivitaLista() {
         ListView listaNakyma = findViewById(R.id.TournamentsList);
@@ -115,5 +121,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 listaItemit);
 
         listaNakyma.setAdapter(itemsAdapter);
+    }
+
+    @Override
+    public void sleepDone() {
+        Tournament fromDB = new Tournament();
+        String[] items = getFromDB.result.split(",");
+        String[] id = items[0].split(":");
+        String[] name = items[1].split(":");
+        String[] format = items[2].split(":");
+        String[] poolID = items[3].split(":");
+
+        fromDB.setTournamentID(id[1].replace("\"","" ).replace(" ", ""));
+        fromDB.setTournamentName(name[1].replace('"',' ').replace(" ", ""));
+        fromDB.setGameFormat(format[1].replace('"',' ').replace(" ", ""));
+        fromDB.setMapPoolID(poolID[1].replace('"',' ').replace(" ", ""));
+        tournamentEngine.addTournament(fromDB);
+        Log.d("Tietokannasta: ", getFromDB.result);
+        paivitaLista();
+
     }
 }
