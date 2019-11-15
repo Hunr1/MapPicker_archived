@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.StringTokenizer;
@@ -125,20 +127,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void sleepDone() {
-        Tournament fromDB = new Tournament();
-        String[] items = getFromDB.result.split(",");
-        String[] id = items[0].split(":");
-        String[] name = items[1].split(":");
-        String[] format = items[2].split(":");
-        String[] poolID = items[3].split(":");
+        try {
+            Tournament fromDB = new Tournament();
+            JSONObject resultFromDB = new JSONObject(getFromDB.getResult());
+            fromDB.setTournamentID(resultFromDB.getString("idTournament"));
+            fromDB.setTournamentName(resultFromDB.getString("TournamentName"));
+            fromDB.setGameFormat(resultFromDB.getString("TournamentDefaultFormat"));
+            fromDB.setMapPoolID(resultFromDB.getString("MapPoolID"));
 
-        fromDB.setTournamentID(id[1].replace("\"","" ).replace(" ", ""));
-        fromDB.setTournamentName(name[1].replace('"',' ').replace(" ", ""));
-        fromDB.setGameFormat(format[1].replace('"',' ').replace(" ", ""));
-        fromDB.setMapPoolID(poolID[1].replace('"',' ').replace(" ", ""));
-        tournamentEngine.addTournament(fromDB);
-        Log.d("Tietokannasta: ", getFromDB.result);
-        paivitaLista();
+            tournamentEngine.addTournament(fromDB);
+            Log.d("Tietokannasta: ", getFromDB.getResult());
+            paivitaLista();
+
+        }catch (Exception e)
+        {
+            Log.d("SLEEPDONE_ERROR", "e");
+        }
+
 
     }
 }

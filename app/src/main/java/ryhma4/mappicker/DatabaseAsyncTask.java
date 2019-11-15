@@ -10,15 +10,22 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javax.net.ssl.HttpsURLConnection;
+
 public class DatabaseAsyncTask extends AsyncTask< String, Integer, Boolean> {
 
 
     private String tournamentID;
-    String result;
+    private String result;
+
     interface OnSleepProgressUpdate {
         void sleepDone();
     }
 
+    public String getResult()
+    {
+        return result;
+    }
     private OnSleepProgressUpdate callback = null;
 
     public void setCallback(OnSleepProgressUpdate callback) {
@@ -40,7 +47,7 @@ public class DatabaseAsyncTask extends AsyncTask< String, Integer, Boolean> {
     private void executeTask() {
         try {
             URL url = new URL("https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/test/get-tournament");
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             InputStream stream = urlConnection.getInputStream();
             result = fromStream(stream);
             Log.d("Tietokannasta: ", result);

@@ -1,13 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.8"
+    android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tournamentID"
         android:textSize="20sp"
         android:gravity="start"/>
+
+    <TextView
+        android:id="@+id/MatchLabel"
+        android:paddingTop="20dp"
+        android:textSize="20sp"
+        android:text="@string/TournamentViewLabelText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/tvTeamA"
+            android:text="tähän tulee teamA"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvTeamB"
+            android:text="tähän tulee teamB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvMapPickBan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/MapPickBanLabel"
+        android:textSize="20sp"
+        android:paddingTop="20dp"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <ListView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"/>
+    <ListView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"/>
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/ManageTournamentBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ManageTournamentText"
+        android:layout_gravity="end">
+
+    </Button>
 
 </LinearLayout>

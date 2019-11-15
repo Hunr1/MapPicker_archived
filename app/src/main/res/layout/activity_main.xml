@@ -9,7 +9,7 @@
     >
 
     <EditText
-        android:inputType="text"
+        android:inputType="textCapCharacters"
         android:id="@+id/EditTextSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
