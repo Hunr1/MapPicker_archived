@@ -19,7 +19,7 @@ public class Match extends Game {
         return teams;
     }
 
-    public void setTeams(ArrayList<String> teams) {
-        this.teams = teams;
+    public void setTeam(String team) {
+        this.teams.add(team);
     }
 }
