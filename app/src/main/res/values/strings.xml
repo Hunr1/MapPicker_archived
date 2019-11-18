@@ -23,6 +23,11 @@
     <string name="TeamB">Team B</string>
     <string name="BestOf">Best of:</string>
     <string name="SwapTeams">SWAP</string>
+    <string name="CTButton">CT</string>
+    <string name="TerroristButton">Terrorist</string>
+    <string name="ReadyButton">Ready</string>
+    <string name="BackButton">Back</string>
+    <string name="Allreadybtn">Save</string>
 
 
     <!-- Map names -->
@@ -55,6 +60,14 @@
         <item>5</item>
         <item>7</item>
         <item>9</item>
+    </string-array>
+
+    <string-array name="TestTeams">
+        <item>Tosi kovat äijät</item>
+        <item>Ranuan kynäriseura</item>
+        <item>Linnanmaa longshots</item>
+        <item>OAMK ownaajat</item>
+        <item>Tuusula titaanit</item>
     </string-array>
 
 
