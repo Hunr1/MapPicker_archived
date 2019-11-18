@@ -32,9 +32,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tournamentList.setOnItemClickListener(this);
         tournamentEngine = TournamentApplication.getEngine();
 
-        getFromDB.setCallback(this);
-        getFromDB.execute("");
-
+        if (tournamentList.getCount() == 0) {
+            getFromDB.setCallback(this);
+            getFromDB.execute("");
+        }
        /*tournamentEngine.addTournament(luoTestiturnaus());
         paivitaLista();*/
     }
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d("SearchError ",e.toString());
                 }
                 break;
+
         }
     }
 
