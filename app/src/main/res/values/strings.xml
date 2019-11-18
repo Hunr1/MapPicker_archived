@@ -11,7 +11,7 @@
     <string name="luo_GameNameText">Choose a game</string>
     <string name="luo_matchFormatText">Choose a format</string>
     <string name="luo_SelectTeamsText">Add teams</string>
-    <string name="luo_generateID">Generate ID</string>
+    <string name="luo_generateID">Create tournament</string>
     <string name="luo_Cancel">Cancel</string>
     <string name="luo_btnAdd">Add</string>
     <string-array name="spinnerGameItems">
