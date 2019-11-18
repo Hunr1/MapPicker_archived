@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
         android:orientation="horizontal">
 
         <FrameLayout
+            android:id="@+id/frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2">
+            android:layout_weight="0.5">
 
             <ImageView
                 android:id="@+id/add_match_listview_image"
-                android:layout_width="213dp"
-                android:layout_height="83dp"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
                 android:layout_weight="2"
                 app:srcCompat="@drawable/csgo_map_dust" />
 
@@ -26,14 +29,57 @@
                 android:id="@+id/add_match_listview_textEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="MapName"
-                android:textAlignment="center"
                 android:shadowColor="@color/black"
                 android:shadowDx="2"
                 android:shadowDy="2"
                 android:shadowRadius="1"
-                android:textSize="50px"/>
+                android:text="MapName"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="50px" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/startingSideFrame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/startingSide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center" />
+
+                <LinearLayout
+                    android:layout_width="206dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/CT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/CTButton" />
+
+                    <Button
+                        android:id="@+id/Terrorist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/TerroristButton" />
+
+                </LinearLayout>
+            </LinearLayout>
+
         </FrameLayout>
 
     </LinearLayout>

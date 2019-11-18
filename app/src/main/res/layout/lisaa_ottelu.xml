@@ -19,7 +19,7 @@
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/TeamB"
+            android:id="@+id/teamB"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -28,6 +28,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lisaa_ottelu_teams_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -36,13 +37,15 @@
             android:id="@+id/teamADropdown"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_weight="2" />
+            android:layout_weight="2"
+            android:entries="@array/TestTeams" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
+            android:onClick="swapButton"
             android:text="@string/SwapTeams"
             tools:text="SWAP" />
 
@@ -50,10 +53,12 @@
             android:id="@+id/teamBDropdown"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_weight="2" />
+            android:layout_weight="2"
+            android:entries="@array/TestTeams" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lisaa_ottelu_bestOf_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -74,23 +79,56 @@
             android:entries="@array/bestOf" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/readyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:onClick="readyButton"
+        android:text="@string/ReadyButton" />
+
     <TextView
         android:id="@+id/CurrentTeam"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pickaava/Banniva tiimi"
         android:textAlignment="center" />
 
     <TextView
         android:id="@+id/Action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ban/Pick + numero"
         android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/allReady"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:onClick="allReadyButton"
+            android:text="@string/Allreadybtn"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:onClick="backButton"
+            android:text="@string/BackButton"
+            android:visibility="gone" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/maps"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+    </ListView>
 
 </LinearLayout>

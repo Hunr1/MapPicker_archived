@@ -4,9 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +18,7 @@ import java.util.ArrayList;
 
 
 //custom adapteri list view olio varten
-public class MapListAdapter extends ArrayAdapter<Map> {
+public class MapListAdapter extends ArrayAdapter<Map>  {
 
     private static final String TAG ="MapListAdapter";
     private Context mContext;
@@ -28,13 +30,13 @@ public class MapListAdapter extends ArrayAdapter<Map> {
         mResource = resource;
     }
 
+
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Integer mapImage = getItem(position).getMapImage();
         String mapName = getItem(position).getMapName();
-
-        Map map = new Map(mapName,mapImage);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource,parent,false);
@@ -46,4 +48,5 @@ public class MapListAdapter extends ArrayAdapter<Map> {
         mapImgImgView.setImageResource(mapImage);
         return convertView;
     }
+
 }
