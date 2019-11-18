@@ -75,13 +75,12 @@
 </LinearLayout>
 
 
-
     <Button
         android:id="@+id/ManageTournamentBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ManageTournamentText"
-        android:layout_gravity="end">
+        android:layout_gravity="end"
+        android:text="@string/NewMatchText">
 
     </Button>
 

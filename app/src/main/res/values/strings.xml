@@ -6,7 +6,7 @@
     <string name="BtnCheckTournamentText">Select</string>
     <string name="ListviewLabelText">Choose a tournament below:</string>
     <string name="IDText">ID: %1$s</string>
-    <string name="ManageTournamentText">Manage Tournament</string>
+    <string name="NewMatchText">New match</string>
     <string name="TournamentViewLabelText">Match details:</string>
     <string name="MapPickBanLabel">Map Pick/Ban</string>
 
@@ -15,4 +15,49 @@
     <string name="luo_matchFormatText">Choose a format</string>
     <string name="luo_SelectTeamsText">Select teams</string>
     <string name="luo_generateID">Generate ID</string>
+
+
+
+    <!-- lisaa_ottelu.xml strings: -->
+    <string name="TeamA">Team A</string>
+    <string name="TeamB">Team B</string>
+    <string name="BestOf">Best of:</string>
+    <string name="SwapTeams">SWAP</string>
+
+
+    <!-- Map names -->
+    <string-array name="mapNames">
+        <item>Dust II</item>
+        <item>Inferno</item>
+        <item>Mirage</item>
+        <item>Nuke</item>
+        <item>Overpass</item>
+        <item>Train</item>
+        <item>Vertigo</item>
+    </string-array>
+
+    <!-- Image file names -->
+    <string-array name="mapImages">
+        <item>csgo_map_dust</item>
+        <item>csgo_map_inferno</item>
+        <item>csgo_map_mirage</item>
+        <item>csgo_map_nuke</item>
+        <item>csgo_map_overpass</item>
+        <item>csgo_map_train</item>
+        <item>csgo_map_vertigo</item>
+    </string-array>
+
+
+    <!-- best of types -->
+    <string-array name="bestOf">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+        <item>7</item>
+        <item>9</item>
+    </string-array>
+
+
+
+
 </resources>
