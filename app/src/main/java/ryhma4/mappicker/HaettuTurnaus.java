@@ -1,6 +1,8 @@
 package ryhma4.mappicker;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Switch;
@@ -30,6 +32,8 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
         {
             case R.id.ManageTournamentBtn:
 
+                Intent intent = new Intent (HaettuTurnaus.this, LisaaOttelu.class);
+                startActivity(intent);
                 break;
         }
     }

@@ -13,7 +13,7 @@
         <TextView
             android:id="@+id/teamA"
             android:layout_width="wrap_content"
-            android:layout_height="29dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/TeamA"
             android:textAlignment="center" />
@@ -21,11 +21,15 @@
         <TextView
             android:id="@+id/teamB"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/TeamB"
             android:textAlignment="center" />
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="11dp" />
 
     <LinearLayout
         android:id="@+id/lisaa_ottelu_teams_layout"
@@ -99,10 +103,23 @@
         android:layout_height="wrap_content"
         android:textAlignment="center" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="18dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:onClick="backButton"
+            android:text="@string/BackButton"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/allReady"
@@ -113,14 +130,6 @@
             android:text="@string/Allreadybtn"
             android:visibility="gone" />
 
-        <Button
-            android:id="@+id/backBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:onClick="backButton"
-            android:text="@string/BackButton"
-            android:visibility="gone" />
     </LinearLayout>
 
     <ListView
