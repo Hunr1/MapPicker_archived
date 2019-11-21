@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LuoUusiTurnaus">
+        <activity android:name=".LuoUusiTurnaus"
+                  android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

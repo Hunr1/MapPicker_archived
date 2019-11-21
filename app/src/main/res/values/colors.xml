@@ -7,4 +7,5 @@
     <color name="black">#000000</color>
     <color name="TeroBrown">#de9b35</color>
     <color name="CTBlue">#5d79ae</color>
+    <color name="colorTransparent">#00000000</color>
 </resources>
