@@ -9,6 +9,7 @@
     <string name="NewMatchText">New match</string>
     <string name="TournamentViewLabelText">Match details:</string>
     <string name="MapPickBanLabel">Map Pick/Ban</string>
+    <string name="AddMatchBtnText">Add Match</string>
 
     <!-- luo_uusi_turnaus.xml strings: -->
     <string name="luo_GameNameText">Choose a game</string>

@@ -44,6 +44,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
     int bestOf = 0;
     int clickCounter = 0;
+    int tourID;
 
     String teamAname;
     String teamBname;
@@ -61,6 +62,8 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lisaa_ottelu);
+
+        tourID = getIntent().getIntExtra("TOURNAMENT_ID", -1);
 
         teamAdropdown = findViewById(R.id.teamADropdown);
         teamBdropdown = findViewById(R.id.teamBDropdown);
@@ -161,6 +164,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
         finish();
         startActivity(intent);
         Log.d("applikaatio","Painettiin takaisin nappia");
+        tourID = getIntent().getIntExtra("TOURNAMENT_ID", -1);
     }
 
     //tähän tietokantaan tallentelut sun muut
