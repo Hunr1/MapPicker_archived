@@ -23,10 +23,10 @@ import java.util.ArrayList;
 public class MapListAdapter extends ArrayAdapter<Map>  {
 
     private static final String TAG ="MapListAdapter";
-    private Context mContext;
-    int mResource;
+    private  Context mContext;
+    private  int mResource;
 
-    public MapListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Map> objects) {
+    MapListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Map> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -47,23 +47,30 @@ public class MapListAdapter extends ArrayAdapter<Map>  {
             holder = new Holder();
             holder.mapName = view.findViewById(R.id.add_match_listview_textEdit);
             holder.mapImg =  view.findViewById(R.id.add_match_listview_image);
-            holder.CT = view.findViewById(R.id.CT);
-            holder.Tero = view.findViewById(R.id.Terrorist);
-            holder.startingSideFrame = view.findViewById(R.id.startingSideFrame);
             view.setTag(holder);
-
-            Log.d("applikaatio","converView == null");
 
         } else {
             holder = (Holder) view.getTag();
-            Log.d("applikaatio","converView =! null");
         }
 
 
-        holder.mapName.setText(getItem(position).getMapName());
-        holder.mapImg.setImageResource(getItem(position).getMapImage());
+        if(getItem(position).getMapName()!= null){
+            holder.mapName.setText(getItem(position).getMapName());
+        }
+        else
+        {
+            Log.d("Applikaatio","map name was null");
+        }
 
-        //Haetaan tarvittavat napit/värit näkyviin jos List Adapteri on korvannut vanhan positionin uudella
+        if(getItem(position).getMapImage()!= null){
+            holder.mapImg.setImageResource(getItem(position).getMapImage());
+        }
+        else
+        {
+            Log.d("Applikaatio","map image was null");
+        }
+
+
         return view;
     }
 
@@ -72,10 +79,6 @@ public class MapListAdapter extends ArrayAdapter<Map>  {
     private class Holder {
         ImageView mapImg;
         TextView mapName;
-        FrameLayout startingSideFrame;
-        Button CT;
-        Button Tero;
-        int buttonLocation;
     }
 }
 

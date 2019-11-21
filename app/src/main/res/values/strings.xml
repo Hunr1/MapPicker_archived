@@ -29,6 +29,32 @@
     <string name="BackButton">Back</string>
     <string name="Allreadybtn">Save</string>
 
+    <string name="FinalPick">Final Pick</string>
+    <string name="Knife">Starting side decided with knife round</string>
+    <string name="PicksDone">Picks done</string>
+
+    <string name="TeamAandTeamName">Team A = %1$s</string>
+    <string name="TeamBandTeamName">Team B = %1$s</string>
+
+    <string-array name="BanActions">
+        <item>Empty</item>
+        <item>Ban 1</item>
+        <item>Ban 2</item>
+        <item>Ban 3</item>
+        <item>Ban 4</item>
+        <item>Ban 5</item>
+        <item>Ban 6</item>
+    </string-array>
+
+    <string-array name="PickActions">
+        <item>Empty</item>
+        <item>Pick 1</item>
+        <item>Pick 2</item>
+        <item>Pick 3</item>
+        <item>Pick 4</item>
+        <item>Pick 5</item>
+        <item>Pick 6</item>
+    </string-array>
 
     <!-- Map names -->
     <string-array name="mapNames">

@@ -32,7 +32,7 @@
         android:layout_height="11dp" />
 
     <LinearLayout
-        android:id="@+id/lisaa_ottelu_teams_layout"
+        android:id="@+id/addMatch_teams_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -62,7 +62,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/lisaa_ottelu_bestOf_layout"
+        android:id="@+id/addMatch_bestOf_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
