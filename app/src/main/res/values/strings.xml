@@ -18,6 +18,9 @@
     <string name="luo_generateID">Generate ID</string>
 
 
+    <string name="line"> - </string>
+
+
 
     <!-- lisaa_ottelu.xml strings: -->
     <string name="TeamA">Team A</string>
@@ -29,6 +32,8 @@
     <string name="ReadyButton">Ready</string>
     <string name="BackButton">Back</string>
     <string name="Allreadybtn">Save</string>
+    <string name="FormatBestOf3">Best of 3</string>
+    <string name="FormatBestOf1">Best of 1</string>
 
     <string name="FinalPick">Final Pick</string>
     <string name="Knife">Starting side decided with knife round</string>

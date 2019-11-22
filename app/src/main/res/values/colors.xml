@@ -8,4 +8,5 @@
     <color name="TeroBrown">#de9b35</color>
     <color name="CTBlue">#5d79ae</color>
     <color name="colorTransparent">#00000000</color>
+    <color name="textBackground">#BA8D8C8C</color>
 </resources>
