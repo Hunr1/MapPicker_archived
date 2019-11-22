@@ -8,26 +8,25 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="false"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <FrameLayout
             android:id="@+id/mapImageFrame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.7">
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.45">
 
             <ImageView
                 android:id="@+id/add_match_listview_image"
                 android:layout_width="match_parent"
-                android:layout_height="67dp"
-                android:layout_weight="2"
+                android:layout_height="72dp"
                 app:srcCompat="@drawable/csgo_map_dust" />
 
             <TextView
                 android:id="@+id/add_match_listview_textEdit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:shadowColor="@color/black"
                 android:shadowDx="2"
                 android:shadowDy="2"
@@ -41,9 +40,9 @@
 
         <FrameLayout
             android:id="@+id/startingSideFrame"
-            android:layout_width="match_parent"
+            android:layout_width="0px"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.7"
             android:visibility="invisible">
 
             <LinearLayout
@@ -53,27 +52,28 @@
 
                 <TextView
                     android:id="@+id/startingSide"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:textAlignment="center" />
 
                 <LinearLayout
-                    android:layout_width="206dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/CT"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
                         android:text="@string/CTButton" />
 
                     <Button
                         android:id="@+id/Terrorist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
                         android:text="@string/TerroristButton" />
 
                 </LinearLayout>
@@ -82,5 +82,9 @@
         </FrameLayout>
 
     </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

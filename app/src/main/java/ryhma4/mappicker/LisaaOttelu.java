@@ -175,11 +175,12 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
         Log.d("applikaatio","Team A name = " +teamAname);
         Log.d("applikaatio","Team B name = " +teamBname);
         Log.d("applikaatio","Tournament format = " +bestOf);
-        Log.d("applikaatio","Game = " +game);
 
         for(int i = 0; i< pickedMaps.size();i++){
             Log.d("applikaatio","Map " + i + " = " + pickedMaps.get(i));
         }
+
+        //Näiden lisäksi tietokantaan tulee karttavoitot ja karttojen tulokset, joita muutetaan HaettuTurnaus luokassa
 
         Intent myIntent = new Intent(LisaaOttelu.this, HaettuTurnaus.class);
         //myIntent.putExtra("key", value);
