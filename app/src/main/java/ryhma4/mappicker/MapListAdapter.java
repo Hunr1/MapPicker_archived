@@ -25,20 +25,24 @@ public class MapListAdapter extends ArrayAdapter<Map>  {
     private static final String TAG ="MapListAdapter";
     private  Context mContext;
     private  int mResource;
+    private boolean pickSide;
 
     MapListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Map> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
+        pickSide = false;
     }
 
+    public void setPickSide(boolean pickSide) {
+        this.pickSide = pickSide;
+    }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
         final Holder holder;
-
 
         if (convertView == null) {
             Context context = parent.getContext();
@@ -70,7 +74,6 @@ public class MapListAdapter extends ArrayAdapter<Map>  {
             Log.d("Applikaatio","map image was null");
         }
 
-
         return view;
     }
 
@@ -79,6 +82,15 @@ public class MapListAdapter extends ArrayAdapter<Map>  {
     private class Holder {
         ImageView mapImg;
         TextView mapName;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        if(pickSide) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
 

@@ -145,7 +145,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
                 break;
 
         }
-          POISTA*/
+        POISTA*/
 
         if (tourID >= 0) {
             Tournament tournament = TournamentApplication.getEngine().tournamentByID(tourID);

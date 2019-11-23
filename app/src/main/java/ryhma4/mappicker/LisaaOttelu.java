@@ -227,7 +227,9 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
                     action.setText(pickActions[2]);
                     startingSideFrame.setVisibility(View.VISIBLE);
+                    adapter.setPickSide(true);
 
+                    v.isEnabled();
                     //Puolten valinta nappien onClick kuuntelijat
                     CTChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -241,6 +243,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide ="CT/" + teamAdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
 
 
@@ -256,6 +259,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide = "Terrorist/"+teamAdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+playedMapSide);
+                            adapter.setPickSide(false);
                         }
                     });
                     startingSide.setText(teamAdropdown.getSelectedItem().toString());
@@ -265,6 +269,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
                     action.setText(banActions[3]);
                     startingSideFrame.setVisibility(View.VISIBLE);
+                    adapter.setPickSide(true);
 
                     //Puolten valinta nappien onClick kuuntelijat
                     CTChoose.setOnClickListener(new View.OnClickListener() {
@@ -279,6 +284,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide = "CT/"+teamBdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 2/"+pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
                     });
                     TerroristChoose.setOnClickListener(new View.OnClickListener() {
@@ -292,6 +298,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide = "Terrorist/"+teamBdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 2/"+ pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
                     });
                     startingSide.setText(teamBdropdown.getSelectedItem().toString());
@@ -352,7 +359,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     action.setText(pickActions[2]);
 
                     startingSideFrame.setVisibility(View.VISIBLE);
-
+                    adapter.setPickSide(true);
                     //Puolten valinta nappien onClick kuuntelijat
                     CTChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -367,6 +374,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide ="CT/" + teamAdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
                     });
                     TerroristChoose.setOnClickListener(new View.OnClickListener() {
@@ -379,6 +387,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide = "Terrorist/"+teamAdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+playedMapSide);
+                            adapter.setPickSide(false);
                         }
                     });
 
@@ -389,6 +398,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
                     action.setText(pickActions[3]);
                     startingSideFrame.setVisibility(View.VISIBLE);
+                    adapter.setPickSide(true);
                     //Puolten valinta nappien onClick kuuntelijat
                     CTChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -403,6 +413,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide ="CT/" + teamBdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 2/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
                     });
                     TerroristChoose.setOnClickListener(new View.OnClickListener() {
@@ -416,6 +427,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide ="Terrorist/" + teamBdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 2/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
                     });
 
@@ -427,7 +439,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     action.setText(pickActions[4]);
 
                     startingSideFrame.setVisibility(View.VISIBLE);
-
+                    adapter.setPickSide(true);
                     //Puolten valinta nappien onClick kuuntelijat
                     CTChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -441,6 +453,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide ="CT/" + teamAdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 3/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
 
 
@@ -456,6 +469,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide ="Terrorist/" + teamAdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 3/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
                     });
 
@@ -466,6 +480,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     pickingTeam.setText(getResources().getString(R.string.FinalPick));
                     action.setText("");
                     startingSideFrame.setVisibility(View.VISIBLE);
+                    adapter.setPickSide(true);
                     //Puolten valinta nappien onClick kuuntelijat
                     CTChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -478,6 +493,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide ="CT/" + teamBdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 4/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
                     });
                     TerroristChoose.setOnClickListener(new View.OnClickListener() {
@@ -491,6 +507,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide ="Terrorist/" + teamBdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 4/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
                     });
                     startingSide.setText(teamBdropdown.getSelectedItem().toString());
@@ -566,7 +583,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     pickingTeam.setText(" ");
                     action.setText(getResources().getString(R.string.PicksDone));
                     startingSideFrame.setVisibility(View.VISIBLE);
-
+                    adapter.setPickSide(true);
                     //Puolten valinta nappien onClick kuuntelijat
                     CTChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -578,6 +595,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide ="CT/" + teamBdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
 
 
@@ -593,6 +611,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
                             playedMapSide ="Terrorist/" + teamBdropdown.getSelectedItem().toString();
                             pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                            adapter.setPickSide(false);
                         }
                     });
                     startingSide.setText(teamBdropdown.getSelectedItem().toString());
