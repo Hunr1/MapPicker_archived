@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/matches"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -28,9 +28,9 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/teamANameTextView"
+                android:id="@+id/Bo3teamANameTextView"
                 android:layout_width="0px"
-                android:layout_height="31dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.35"
                 android:text="Team A name"
                 android:textAlignment="center" />
@@ -60,9 +60,9 @@
                 android:inputType="number" />
 
             <TextView
-                android:id="@+id/teamBNameTextView"
+                android:id="@+id/Bo3teamBNameTextView"
                 android:layout_width="0px"
-                android:layout_height="31dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.35"
                 android:text="Team B name"
                 android:textAlignment="center" />
@@ -70,13 +70,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/mapPickTitles"
+            android:id="@+id/Bo3mapPickTitles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/pick1Title"
+                android:id="@+id/Bo3pick1Title"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -84,7 +84,7 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/pick2Title"
+                android:id="@+id/Bo3pick2Title"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -92,7 +92,7 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/pick3Title"
+                android:id="@+id/Bo3pick3Title"
                 android:layout_width="0px"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -102,25 +102,25 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/mapPickImages"
+            android:id="@+id/Bo3mapPickImages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <FrameLayout
-                android:id="@+id/pick1Frame"
+                android:id="@+id/Bo3pick1Frame"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3">
 
                 <ImageView
-                    android:id="@+id/pick1Image"
+                    android:id="@+id/Bo3pick1Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     app:srcCompat="@drawable/csgo_map_dust" />
 
                 <TextView
-                    android:id="@+id/pick1Name"
+                    android:id="@+id/Bo3pick1Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -147,13 +147,13 @@
                 android:layout_weight="0.3">
 
                 <ImageView
-                    android:id="@+id/pick2Image"
+                    android:id="@+id/Bo3pick2Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     app:srcCompat="@drawable/csgo_map_inferno" />
 
                 <TextView
-                    android:id="@+id/pick2Name"
+                    android:id="@+id/Bo3pick2Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -180,13 +180,13 @@
                 android:layout_weight="0.3">
 
                 <ImageView
-                    android:id="@+id/pick3Image"
+                    android:id="@+id/Bo3pick3Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     app:srcCompat="@drawable/csgo_map_overpass" />
 
                 <TextView
-                    android:id="@+id/pick3Name"
+                    android:id="@+id/Bo3pick3Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -205,13 +205,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/mapPickedMapScores"
+            android:id="@+id/Bo3mapPickedMapScores"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/pick1TeamARounds"
+                android:id="@+id/Bo3pick1TeamARounds"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.15"
@@ -219,7 +219,7 @@
                 android:inputType="number" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/Bo3line"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.05"
@@ -228,7 +228,7 @@
                 android:textSize="20dp" />
 
             <EditText
-                android:id="@+id/pick1TeamBRounds"
+                android:id="@+id/Bo3pick1TeamBRounds"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.15"
@@ -297,13 +297,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/mapBansTitles"
+            android:id="@+id/Bo3mapBansTitles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/ban1Title"
+                android:id="@+id/Bo3ban1Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -311,7 +311,7 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/ban2Title"
+                android:id="@+id/Bo3ban2Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -319,7 +319,7 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/ban3Title"
+                android:id="@+id/Bo3ban3Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -327,7 +327,7 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/ban4Title"
+                android:id="@+id/Bo3ban4Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -337,26 +337,26 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/mapBansImages"
+            android:id="@+id/Bo3mapBansImages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <FrameLayout
-                android:id="@+id/ban1Frame"
+                android:id="@+id/Bo3ban1Frame"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ban1Image"
+                    android:id="@+id/Bo3ban1Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/csgo_map_mirage" />
 
                 <TextView
-                    android:id="@+id/ban1Name"
+                    android:id="@+id/Bo3ban1Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -372,20 +372,20 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/ban2Frame"
+                android:id="@+id/Bo3ban2Frame"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ban2Image"
+                    android:id="@+id/Bo3ban2Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/csgo_map_nuke" />
 
                 <TextView
-                    android:id="@+id/ban2Name"
+                    android:id="@+id/Bo3ban2Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -401,13 +401,13 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/ban3Frame"
+                android:id="@+id/Bo3ban3Frame"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ban3Image"
+                    android:id="@+id/Bo3ban3Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     android:layout_weight="1"
@@ -415,7 +415,7 @@
                     app:srcCompat="@drawable/csgo_map_train" />
 
                 <TextView
-                    android:id="@+id/ban3Name"
+                    android:id="@+id/Bo3ban3Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -432,20 +432,20 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/ban4Frame"
+                android:id="@+id/Bo3ban4Frame"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ban4Image"
+                    android:id="@+id/Bo3ban4Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/csgo_map_vertigo" />
 
                 <TextView
-                    android:id="@+id/ban4Name"
+                    android:id="@+id/Bo3ban4Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -490,7 +490,7 @@
                 android:layout_weight="1" />
 
             <TextView
-                android:id="@+id/pick1Title"
+                android:id="@+id/Bo1pick1Title"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -527,13 +527,13 @@
                 android:layout_weight="0.27">
 
                 <ImageView
-                    android:id="@+id/pick1Image"
+                    android:id="@+id/Bo1pick1Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     app:srcCompat="@drawable/csgo_map_dust" />
 
                 <TextView
-                    android:id="@+id/pick1Name"
+                    android:id="@+id/Bo1pick1Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -610,7 +610,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/ban1Title"
+                android:id="@+id/Bo1ban1Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -618,7 +618,7 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/ban2Title"
+                android:id="@+id/Bo1ban2Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -626,7 +626,7 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/ban3Title"
+                android:id="@+id/Bo1ban3Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -648,14 +648,14 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ban1Image"
+                    android:id="@+id/Bo1ban1Image"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/csgo_map_mirage" />
 
                 <TextView
-                    android:id="@+id/ban1Name"
+                    android:id="@+id/Bo1ban1Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -677,14 +677,14 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ban2Image"
+                    android:id="@+id/Bo1ban2Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/csgo_map_nuke" />
 
                 <TextView
-                    android:id="@+id/ban2Name"
+                    android:id="@+id/Bo1ban2Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -706,7 +706,7 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ban3Image"
+                    android:id="@+id/Bo1ban3Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     android:layout_weight="1"
@@ -714,7 +714,7 @@
                     app:srcCompat="@drawable/csgo_map_train" />
 
                 <TextView
-                    android:id="@+id/ban3Name"
+                    android:id="@+id/Bo1ban3Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -739,7 +739,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/ban4Title"
+                android:id="@+id/Bo1ban4Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -747,7 +747,7 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/ban5Title"
+                android:id="@+id/Bo1ban5Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -755,7 +755,7 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/ban6Title"
+                android:id="@+id/Bo1ban6Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -776,14 +776,14 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ban4Image"
+                    android:id="@+id/Bo1ban4Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     android:layout_weight="1"
                     app:srcCompat="@drawable/csgo_map_vertigo" />
 
                 <TextView
-                    android:id="@+id/ban4Name"
+                    android:id="@+id/Bo1ban4Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -805,13 +805,13 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ban5Image"
+                    android:id="@+id/Bo1ban5Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     app:srcCompat="@drawable/csgo_map_overpass" />
 
                 <TextView
-                    android:id="@+id/ban5Name"
+                    android:id="@+id/Bo1ban5Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -833,13 +833,13 @@
                 android:layout_weight="1">
 
                 <ImageView
-                    android:id="@+id/ban6Image"
+                    android:id="@+id/Bo1ban6Image"
                     android:layout_width="wrap_content"
                     android:layout_height="70dp"
                     app:srcCompat="@drawable/csgo_map_inferno" />
 
                 <TextView
-                    android:id="@+id/ban6Name"
+                    android:id="@+id/Bo1ban6Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -856,4 +856,8 @@
         </LinearLayout>
     </LinearLayout><!--BestOf1Layout-->     <!--Muutetaan android:visibility(VISIBLE) koodissa kun halutaan käyttää-->
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#000000" />
 </LinearLayout>
