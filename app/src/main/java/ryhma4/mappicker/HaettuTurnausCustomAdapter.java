@@ -33,7 +33,6 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
         game =  "CS:GO";
     }
 
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -233,7 +232,6 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
                         }
                     }
                     break;
-
                 case("Pick 2"):
                     holder.Bo3pick2Name.setText(mapName.get(k));
                     holder.Bo3pick2Title.setText(mapInfo.get(k));
