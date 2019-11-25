@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,6 +59,8 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
     String[] banActions;
     String[] pickActions;
 
+    Match match;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,7 +101,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                 String mapImage = mapImages.get(i);
                 int mapImgID = getResources().getIdentifier(mapImage, "drawable", getPackageName());
 
-                Log.d("applikaatio", "lisataan " + mapNames.get(i) + "    " + mapImgID);
 
                 //lisätään olio csgoMaplist arraylistiin
                 csgoMaplist.add(new Map(mapNames.get(i), mapImgID));
@@ -129,8 +131,8 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
         if (!teamBdropdown.getSelectedItem().toString().equals(teamAdropdown.getSelectedItem().toString())){
 
 
-            teamAname = getResources().getString(R.string.TeamAandTeamName, teamAdropdown.getSelectedItem().toString());
-            teamBname = getResources().getString(R.string.TeamBandTeamName, teamBdropdown.getSelectedItem().toString());
+            teamAname = teamAdropdown.getSelectedItem().toString();
+            teamBname = teamBdropdown.getSelectedItem().toString();
 
 
             teamATextView.setText(teamAname);
@@ -169,22 +171,22 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
     //tähän tietokantaan tallentelut sun muut
     public void allReadyButton (View v){
-
-        Log.d("applikaatio","--------------------------------------------------------------------");
         Log.d("applikaatio","Lähetetään dataa eteenpäin ja palataan takaisin turnaushallintaan->>");
-        Log.d("applikaatio","Team A name = " +teamAname);
-        Log.d("applikaatio","Team B name = " +teamBname);
-        Log.d("applikaatio","Tournament format = " +bestOf);
+        match = new Match();
+        match.setTeamAname(teamAname);
+        match.setTeamBname(teamBname);
+        match.setGameFormat(bestOfDropdown.getSelectedItem().toString());
 
         for(int i = 0; i< pickedMaps.size();i++){
-            Log.d("applikaatio","Map " + i + " = " + pickedMaps.get(i));
+            match.addToMapINfo(pickedMaps.get(i));
         }
 
         //Näiden lisäksi tietokantaan tulee karttavoitot ja karttojen tulokset, joita muutetaan HaettuTurnaus luokassa
 
-        Intent myIntent = new Intent(LisaaOttelu.this, HaettuTurnaus.class);
-        //myIntent.putExtra("key", value);
-        LisaaOttelu.this.startActivity(myIntent);
+        //palauttaa luodun uuden Match olion
+        Intent i = new Intent(LisaaOttelu.this, HaettuTurnaus.class);
+        i.putExtra("newMatch", (Serializable)match);
+        startActivity(i);
     }
 
 
@@ -228,14 +230,11 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     action.setText(pickActions[2]);
                     startingSideFrame.setVisibility(View.VISIBLE);
                     adapter.setPickSide(true);
-
-                    v.isEnabled();
                     //Puolten valinta nappien onClick kuuntelijat
                     CTChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
-                            Log.d("applikaatio", "Valittiin CT");
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);
@@ -251,7 +250,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     TerroristChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Log.d("applikaatio", "Valittiin Terrorist");
                             csgoMaplist.remove(position);
                             startingSideFrame.setVisibility(View.INVISIBLE);
                             adapter.notifyDataSetChanged();
@@ -276,7 +274,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                         @Override
                         public void onClick(View view) {
 
-                            Log.d("applikaatio", "Valittiin CT");
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);
@@ -290,7 +287,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     TerroristChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Log.d("applikaatio", "Valittiin Terrorist");
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);
@@ -331,7 +327,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
             }
 
             clickCounter++;
-            Log.d("Applikaatio", "click count = " + clickCounter);
         //##############################################################################################################################    Best of 5   #######################################
         } else if (game.equals("CS:GO")
                 && bestOf == 5
@@ -366,7 +361,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                         public void onClick(View view) {
 
                             playedMapSide = teamAdropdown.getSelectedItem().toString() + "/CT";
-                            Log.d("applikaatio", "Valittiin CT");
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);
@@ -380,7 +374,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     TerroristChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Log.d("applikaatio", "Valittiin Terrorist");
                             csgoMaplist.remove(position);
                             startingSideFrame.setVisibility(View.INVISIBLE);
                             adapter.notifyDataSetChanged();
@@ -405,7 +398,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                         public void onClick(View view) {
 
                             playedMapSide = teamBdropdown.getSelectedItem().toString() + "/CT";
-                            Log.d("applikaatio", "Valittiin CT");
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);
@@ -419,7 +411,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     TerroristChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Log.d("applikaatio", "Valittiin Terrorist");
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);
@@ -446,7 +437,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                         public void onClick(View view) {
 
                             playedMapSide = teamAdropdown.getSelectedItem().toString() + "/CT";
-                            Log.d("applikaatio", "Valittiin CT");
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);
@@ -461,7 +451,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     TerroristChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Log.d("applikaatio", "Valittiin Terrorist");
                             csgoMaplist.remove(position);
                             startingSideFrame.setVisibility(View.INVISIBLE);
                             adapter.notifyDataSetChanged();
@@ -485,7 +474,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     CTChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Log.d("applikaatio", "Valittiin CT");
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);
@@ -499,7 +487,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     TerroristChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Log.d("applikaatio", "Valittiin Terrorist");
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);
@@ -523,7 +510,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
             }
             clickCounter++;
-            Log.d("Applikaatio", "click count = " + clickCounter);
         }
         //##############################################################################################################################    Best of 1   #######################################
         else if (game.equals("CS:GO")
@@ -588,7 +574,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     CTChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Log.d("applikaatio", "Valittiin CT");
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);
@@ -603,7 +588,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     TerroristChoose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Log.d("applikaatio", "Valittiin Terrorist");
                             csgoMaplist.remove(position);
                             startingSideFrame.setVisibility(View.INVISIBLE);
                             adapter.notifyDataSetChanged();
@@ -618,7 +602,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                     break;
             }
             clickCounter++;
-            Log.d("Applikaatio", "click count = " + clickCounter);
         }
     }
 }

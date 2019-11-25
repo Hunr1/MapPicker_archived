@@ -2,11 +2,12 @@ package ryhma4.mappicker;
 
 
 //Olioon tallennetaan karttojen kuvat(int viittaus drawable ID:seen) ja nimet
-public class Map {
+public class Map extends Match{
     private String mapName;
     private Integer mapImage;
 
     public Map(String mapName, Integer mapImage) {
+        super();
         this.mapName = mapName;
         this.mapImage = mapImage;
     }
@@ -27,6 +28,7 @@ public class Map {
     public void setMapImage(Integer mapImage) {
         this.mapImage = mapImage;
     }
+
 }
 
 
