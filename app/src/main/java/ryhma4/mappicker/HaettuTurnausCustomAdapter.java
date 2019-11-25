@@ -35,22 +35,23 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull final ViewGroup parent) {
 
-        ViewHolder holder;
+        final ViewHolder holder;
 
         if(convertView==null){
             LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.match_list_csgo, parent, false);
             holder = new ViewHolder();
+
             holder.bestOf1 = convertView.findViewById(R.id.bestOf1);
             holder.bestOf3 = convertView.findViewById(R.id.bestOf3);
 
-            holder.teamAName = convertView.findViewById(R.id.teamANameTextView);
-            holder.teamBName = convertView.findViewById(R.id.teamBNameTextView);
+            holder.Bo3teamAName = convertView.findViewById(R.id.Bo3teamAName);
+            holder.Bo3teamBName = convertView.findViewById(R.id.Bo3teamBName);
 
-            holder.teamAMapScore = convertView.findViewById(R.id.teamAMapScore);
-            holder.teamBMapScore = convertView.findViewById(R.id.teamBMapScore);
+            holder.Bo3teamAMapScore = convertView.findViewById(R.id.Bo3teamAMapScore);
+            holder.Bo3teamBMapScore = convertView.findViewById(R.id.Bo3teamBMapScore);
 
             holder.Bo3pick1Title = convertView.findViewById(R.id.Bo3pick1Title);
             holder.Bo3pick2Title = convertView.findViewById(R.id.Bo3pick2Title);
@@ -70,12 +71,12 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
             holder.Bo3pick2Name = convertView.findViewById(R.id.Bo3pick2Name);
             holder.Bo3pick3Name = convertView.findViewById(R.id.Bo3pick3Name);
 
-            holder.pick1_teamA_rounds = convertView.findViewById(R.id.pick1TeamARounds);
-            holder.pick1_teamB_rounds = convertView.findViewById(R.id.pick1TeamBRounds);
-            holder.pick2_teamA_rounds = convertView.findViewById(R.id.pick2TeamARounds);
-            holder.pick2_teamB_rounds = convertView.findViewById(R.id.pick2TeamBRounds);
-            holder.pick3_teamA_rounds = convertView.findViewById(R.id.pick3TeamARounds);
-            holder.pick3_teamB_rounds = convertView.findViewById(R.id.pick3TeamBRounds);
+            holder.Bo3pick1_teamA_rounds = convertView.findViewById(R.id.Bo3pick1TeamARounds);
+            holder.Bo3pick1_teamB_rounds = convertView.findViewById(R.id.Bo3pick1TeamBRounds);
+            holder.Bo3pick2_teamA_rounds = convertView.findViewById(R.id.Bo3pick2TeamARounds);
+            holder.Bo3pick2_teamB_rounds = convertView.findViewById(R.id.Bo3pick2TeamBRounds);
+            holder.Bo3pick3_teamA_rounds = convertView.findViewById(R.id.Bo3pick3TeamARounds);
+            holder.Bo3pick3_teamB_rounds = convertView.findViewById(R.id.Bo3pick3TeamBRounds);
 
             holder.Bo3ban1Image = convertView.findViewById(R.id.Bo3ban1Image);
             holder.Bo3ban2Image = convertView.findViewById(R.id.Bo3ban2Image);
@@ -91,11 +92,9 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
             holder.bestOf1 = convertView.findViewById(R.id.bestOf1);
             holder.bestOf3 = convertView.findViewById(R.id.bestOf3);
 
-            holder.teamAName = convertView.findViewById(R.id.teamANameTextView);
-            holder.teamBName = convertView.findViewById(R.id.teamBNameTextView);
+            holder.Bo1teamAName = convertView.findViewById(R.id.Bo1teamAname);
+            holder.Bo1teamBName = convertView.findViewById(R.id.Bo1teamBname);
 
-            holder.teamAMapScore = convertView.findViewById(R.id.teamAMapScore);
-            holder.teamBMapScore = convertView.findViewById(R.id.teamBMapScore);
 
             holder.Bo1pick1Title = convertView.findViewById(R.id.Bo1pick1Title);
 
@@ -110,12 +109,9 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
             holder.Bo1pick1Image = convertView.findViewById(R.id.Bo1pick1Image);
             holder.Bo1pick1Name = convertView.findViewById(R.id.Bo1pick1Name);
 
-            holder.pick1_teamA_rounds = convertView.findViewById(R.id.pick1TeamARounds);
-            holder.pick1_teamB_rounds = convertView.findViewById(R.id.pick1TeamBRounds);
-            holder.pick2_teamA_rounds = convertView.findViewById(R.id.pick2TeamARounds);
-            holder.pick2_teamB_rounds = convertView.findViewById(R.id.pick2TeamBRounds);
-            holder.pick3_teamA_rounds = convertView.findViewById(R.id.pick3TeamARounds);
-            holder.pick3_teamB_rounds = convertView.findViewById(R.id.pick3TeamBRounds);
+            holder.Bo1pick1_teamA_rounds = convertView.findViewById(R.id.Bo1pick1TeamARounds);
+            holder.Bo1pick1_teamB_rounds = convertView.findViewById(R.id.Bo1pick1TeamBRounds);
+
 
             holder.Bo1ban1Image = convertView.findViewById(R.id.Bo1ban1Image);
             holder.Bo1ban2Image = convertView.findViewById(R.id.Bo1ban2Image);
@@ -139,7 +135,8 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        List<String> mapImages = Arrays.asList(mContext.getResources().getStringArray(R.array.mapImages));
+
+        final List<String> mapImages = Arrays.asList(mContext.getResources().getStringArray(R.array.mapImages));
         List<String> mapNames = Arrays.asList(mContext.getResources().getStringArray(R.array.mapNames));
 
         if (game.equals("CS:GO"))
@@ -156,8 +153,9 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
         }
 
         Match match = getItem(position);
-        Log.d("Applikaatio","Haettu match = " +match.toString());
 
+
+        Log.d("Applikaatio","Haettu match = " +match.toString());
         if(!match.getGameFormat().isEmpty()){
             switch (match.getGameFormat()){
                 case("1"):
@@ -172,6 +170,21 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
                     break;
             }
         }
+
+
+        holder.Bo3teamAMapScore.setText(match.getTeamAMapScore());
+        holder.Bo3teamBMapScore.setText(match.getTeamBMapScore());
+
+        holder.Bo1pick1_teamA_rounds.setText(match.getTeam_A_map1_score());
+        holder.Bo1pick1_teamB_rounds.setText(match.getTeam_B_map1_score());
+
+
+        holder.Bo3pick1_teamA_rounds.setText(match.getTeam_A_map1_score());
+        holder.Bo3pick1_teamB_rounds.setText(match.getTeam_B_map1_score());
+        holder.Bo3pick2_teamA_rounds.setText(match.getTeam_A_map2_score());
+        holder.Bo3pick2_teamB_rounds.setText(match.getTeam_B_map2_score());
+        holder.Bo3pick3_teamA_rounds.setText(match.getTeam_A_map3_score());
+        holder.Bo3pick3_teamB_rounds.setText(match.getTeam_B_map3_score());
 
 
         ArrayList<String> mapInfo;
@@ -210,9 +223,6 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
                 Log.d("Applikaatio#","Virheellinen määrä dataa mapInfossa");
             }
         }
-
-        holder.teamAName.setText(match.getTeamAname());
-        holder.teamBName.setText(match.getTeamBname());
 
 
         for(int k = 0; k< action.size();k++){
@@ -335,21 +345,23 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
         }
 
         return convertView;
+
     }
 
-
-    static class ViewHolder {
-
+    class ViewHolder {
 
 
         LinearLayout bestOf1;
         LinearLayout bestOf3;
 
-        TextView teamAName;
-        TextView teamBName;
+        TextView Bo3teamAName;
+        TextView Bo3teamBName;
 
-        EditText teamAMapScore;
-        EditText teamBMapScore;
+        TextView Bo1teamAName;
+        TextView Bo1teamBName;
+
+        EditText Bo3teamAMapScore;
+        EditText Bo3teamBMapScore;
 
 
         TextView Bo3pick1Title;
@@ -371,14 +383,14 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
         TextView Bo3pick2Name;
         TextView Bo3pick3Name;
 
-        EditText pick1_teamA_rounds;
-        EditText pick1_teamB_rounds;
+        EditText Bo3pick1_teamA_rounds;
+        EditText Bo3pick1_teamB_rounds;
 
-        EditText pick2_teamA_rounds;
-        EditText pick2_teamB_rounds;
+        EditText Bo3pick2_teamA_rounds;
+        EditText Bo3pick2_teamB_rounds;
 
-        EditText pick3_teamA_rounds;
-        EditText pick3_teamB_rounds;
+        EditText Bo3pick3_teamA_rounds;
+        EditText Bo3pick3_teamB_rounds;
 
         ImageView Bo3ban1Image;
         ImageView Bo3ban2Image;
@@ -418,7 +430,8 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
         TextView Bo1ban5Name;
         TextView Bo1ban6Name;
 
-
+        EditText Bo1pick1_teamA_rounds;
+        EditText Bo1pick1_teamB_rounds;
 
     }
 

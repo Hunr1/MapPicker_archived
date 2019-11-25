@@ -25,8 +25,6 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
 
     HaettuTurnausCustomAdapter adapter;
 
-    SavedMatches savedMatches;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +61,6 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
 
         if(haettuOttelu!=null) {
             Log.d("Applikaatio", "trying to add new match");
-
             //lisää ottelun matches listaan
             matches.add(haettuOttelu);
         }
@@ -82,7 +79,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
                 Intent intent = new Intent(HaettuTurnaus.this, LisaaOttelu.class);
                 intent.putExtra("TOURNAMENT_ID", tourID );
                 startActivity(intent);
-                finish();;
+                finish();
                 break;
         }
     }
@@ -99,12 +96,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
 
-        Log.d("Applikaatio", "Palautetaan ottelut");
-        super.onSaveInstanceState(savedInstanceState);
-    }
 }
 
 

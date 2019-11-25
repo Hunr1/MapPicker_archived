@@ -13,29 +13,93 @@ public class Match extends Game implements Serializable,Parcelable {
     private ArrayList<String> mapInfo = new ArrayList<>();
     private String teamAname;
     private String teamBname;
+    private String teamAMapScore;
+    private String teamBMapScore;
 
-    protected Match(Parcel in) {
-        teams = in.createStringArrayList();
-        gameFormat = in.readString();
-        mapInfo = in.createStringArrayList();
-        teamAname = in.readString();
-        teamBname = in.readString();
-    }
+    private String team_A_map1_score;
+    private String team_B_map1_score;
+    private String team_A_map2_score;
+    private String team_B_map2_score;
+    private String team_A_map3_score;
+    private String team_B_map3_score;
 
-    public static final Creator<Match> CREATOR = new Creator<Match>() {
-        @Override
-        public Match createFromParcel(Parcel in) {
-            return new Match(in);
-        }
 
-        @Override
-        public Match[] newArray(int size) {
-            return new Match[size];
-        }
-    };
-
+    //Default constructori, scoret nolliksi kun debuggailu on done
     public Match() {
 
+        teamAMapScore = "A1";
+        teamBMapScore = "B1";
+        team_A_map1_score = "SA1";
+        team_B_map1_score = "SB1";
+        team_A_map2_score = "SA2";
+        team_B_map2_score ="SB2";
+        team_A_map3_score ="SA3";
+        team_B_map3_score ="SB3";
+    }
+
+
+    public String getTeam_A_map1_score() {
+        return team_A_map1_score;
+    }
+
+    public void setTeam_A_map1_score(String team_A_map1_score) {
+        this.team_A_map1_score = team_A_map1_score;
+    }
+
+    public String getTeam_B_map1_score() {
+        return team_B_map1_score;
+    }
+
+    public void setTeam_B_map1_score(String team_B_map1_score) {
+        this.team_B_map1_score = team_B_map1_score;
+    }
+
+    public String getTeam_A_map2_score() {
+        return team_A_map2_score;
+    }
+
+    public void setTeam_A_map2_score(String team_A_map2_score) {
+        this.team_A_map2_score = team_A_map2_score;
+    }
+
+    public String getTeam_B_map2_score() {
+        return team_B_map2_score;
+    }
+
+    public void setTeam_B_map2_score(String team_B_map2_score) {
+        this.team_B_map2_score = team_B_map2_score;
+    }
+
+    public String getTeam_A_map3_score() {
+        return team_A_map3_score;
+    }
+
+    public void setTeam_A_map3_score(String team_A_map3_score) {
+        this.team_A_map3_score = team_A_map3_score;
+    }
+
+    public String getTeam_B_map3_score() {
+        return team_B_map3_score;
+    }
+
+    public void setTeam_B_map3_score(String team_B_map3_score) {
+        this.team_B_map3_score = team_B_map3_score;
+    }
+
+    public String getTeamBMapScore() {
+        return teamBMapScore;
+    }
+
+    public void setTeamBMapScore(String teamBMapScore) {
+        this.teamBMapScore = teamBMapScore;
+    }
+
+    public String getTeamAMapScore() {
+        return teamAMapScore;
+    }
+
+    public void setTeamAMapScore(String teamAMapScore) {
+        this.teamAMapScore = teamAMapScore;
     }
 
     public String getGameFormat() {
@@ -82,6 +146,36 @@ public class Match extends Game implements Serializable,Parcelable {
         this.teamBname = teamBname;
     }
 
+
+    protected Match(Parcel in) {
+        teams = in.createStringArrayList();
+        gameFormat = in.readString();
+        mapInfo = in.createStringArrayList();
+        teamAname = in.readString();
+        teamBname = in.readString();
+        teamAMapScore = in.readString();
+        teamBMapScore = in.readString();
+        team_A_map1_score = in.readString();
+        team_B_map1_score = in.readString();
+        team_A_map2_score = in.readString();
+        team_B_map2_score = in.readString();
+        team_A_map3_score = in.readString();
+        team_B_map3_score = in.readString();
+    }
+
+
+    public static final Creator<Match> CREATOR = new Creator<Match>() {
+        @Override
+        public Match createFromParcel(Parcel in) {
+            return new Match(in);
+        }
+
+        @Override
+        public Match[] newArray(int size) {
+            return new Match[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
@@ -94,5 +188,13 @@ public class Match extends Game implements Serializable,Parcelable {
         parcel.writeStringList(mapInfo);
         parcel.writeString(teamAname);
         parcel.writeString(teamBname);
+        parcel.writeString(teamAMapScore);
+        parcel.writeString(teamBMapScore);
+        parcel.writeString(team_A_map1_score);
+        parcel.writeString(team_B_map1_score);
+        parcel.writeString(team_A_map2_score);
+        parcel.writeString(team_B_map2_score);
+        parcel.writeString(team_A_map3_score);
+        parcel.writeString(team_B_map3_score);
     }
 }

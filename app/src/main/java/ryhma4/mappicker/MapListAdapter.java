@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 
 
-//custom adapteri list view olio varten
+//custom adapteri list view olio varten lisaa ottelu acttivityssa
 public class MapListAdapter extends ArrayAdapter<Map>  {
 
     private static final String TAG ="MapListAdapter";
