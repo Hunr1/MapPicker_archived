@@ -1,6 +1,8 @@
 package ryhma4.mappicker;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -127,7 +129,6 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
             holder.Bo1ban4Name = convertView.findViewById(R.id.Bo1ban4Name);
             holder.Bo1ban5Name = convertView.findViewById(R.id.Bo1ban5Name);
             holder.Bo1ban6Name = convertView.findViewById(R.id.Bo1ban6Name);
-
             convertView.setTag(holder);
 
         }
@@ -152,12 +153,11 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
             }
         }
 
-        Match match = getItem(position);
+        holder.match = getItem(position);
 
-
-        Log.d("Applikaatio","Haettu match = " +match.toString());
-        if(!match.getGameFormat().isEmpty()){
-            switch (match.getGameFormat()){
+        Log.d("Applikaatio","Haettu match = " +holder.match.toString());
+        if(!holder.match.getGameFormat().isEmpty()){
+            switch (holder.match.getGameFormat()){
                 case("1"):
                     holder.bestOf1.setVisibility(View.VISIBLE);
                     holder.bestOf3.setVisibility(View.GONE);
@@ -172,20 +172,19 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
         }
 
 
-        holder.Bo3teamAMapScore.setText(match.getTeamAMapScore());
-        holder.Bo3teamBMapScore.setText(match.getTeamBMapScore());
+        holder.Bo3teamAMapScore.setText(holder.match.getTeamAMapScore());
+        holder.Bo3teamBMapScore.setText(holder.match.getTeamBMapScore());
 
-        holder.Bo1pick1_teamA_rounds.setText(match.getTeam_A_map1_score());
-        holder.Bo1pick1_teamB_rounds.setText(match.getTeam_B_map1_score());
+        holder.Bo1pick1_teamA_rounds.setText(holder.match.getTeam_A_map1_score());
+        holder.Bo1pick1_teamB_rounds.setText(holder.match.getTeam_B_map1_score());
 
 
-        holder.Bo3pick1_teamA_rounds.setText(match.getTeam_A_map1_score());
-        holder.Bo3pick1_teamB_rounds.setText(match.getTeam_B_map1_score());
-        holder.Bo3pick2_teamA_rounds.setText(match.getTeam_A_map2_score());
-        holder.Bo3pick2_teamB_rounds.setText(match.getTeam_B_map2_score());
-        holder.Bo3pick3_teamA_rounds.setText(match.getTeam_A_map3_score());
-        holder.Bo3pick3_teamB_rounds.setText(match.getTeam_B_map3_score());
-
+        holder.Bo3pick1_teamA_rounds.setText(holder.match.getTeam_A_map1_score());
+        holder.Bo3pick1_teamB_rounds.setText(holder.match.getTeam_B_map1_score());
+        holder.Bo3pick2_teamA_rounds.setText(holder.match.getTeam_A_map2_score());
+        holder.Bo3pick2_teamB_rounds.setText(holder.match.getTeam_B_map2_score());
+        holder.Bo3pick3_teamA_rounds.setText(holder.match.getTeam_A_map3_score());
+        holder.Bo3pick3_teamB_rounds.setText(holder.match.getTeam_B_map3_score());
 
         ArrayList<String> mapInfo;
         ArrayList<String> action = new ArrayList<>();
@@ -194,8 +193,8 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
         ArrayList<String> side = new ArrayList<>();
         ArrayList<String> whoPickedSide = new ArrayList<>();
 
-        mapInfo = match.getMapInfo();
-        Log.d("Applikaatio","map info = " + match.getMapInfo().toString());
+        mapInfo = holder.match.getMapInfo();
+        Log.d("Applikaatio","map info = " + holder.match.getMapInfo().toString());
 
         for(int counter = 0;counter < mapInfo.size(); counter++){
             String[] splittedMapInfo = mapInfo.get(counter).split("/");
@@ -223,6 +222,178 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
                 Log.d("Applikaatio#","Virheellinen määrä dataa mapInfossa");
             }
         }
+
+
+        holder.Bo3teamAName.setText(holder.match.getTeamAname());
+        holder.Bo3teamBName.setText(holder.match.getTeamBname());
+
+        holder.Bo1teamAName.setText(holder.match.getTeamAname());
+        holder.Bo1teamBName.setText(holder.match.getTeamBname());
+
+
+        //EditTextien kuuntelijat
+        holder.Bo3teamAMapScore.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                holder.match.setTeamAMapScore(holder.Bo3teamAMapScore.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        holder.Bo3teamBMapScore.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                holder.match.setTeamBMapScore(holder.Bo3teamBMapScore.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        holder.Bo1pick1_teamA_rounds.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                holder.match.setTeam_A_map1_score(holder.Bo1pick1_teamA_rounds.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        holder.Bo1pick1_teamB_rounds.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                holder.match.setTeam_B_map1_score(holder.Bo1pick1_teamB_rounds.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        holder.Bo3pick1_teamA_rounds.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                holder.match.setTeam_A_map1_score(holder.Bo3pick1_teamA_rounds.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        holder.Bo3pick1_teamB_rounds.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                holder.match.setTeam_B_map1_score(holder.Bo3pick1_teamB_rounds.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        holder.Bo3pick2_teamA_rounds.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                holder.match.setTeam_A_map2_score(holder.Bo3pick2_teamA_rounds.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        holder.Bo3pick2_teamB_rounds.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                holder.match.setTeam_B_map2_score(holder.Bo3pick2_teamB_rounds.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        holder.Bo3pick3_teamA_rounds.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                holder.match.setTeam_A_map3_score(holder.Bo3pick3_teamA_rounds.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        holder.Bo3pick3_teamB_rounds.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                holder.match.setTeam_B_map3_score(holder.Bo3pick3_teamB_rounds.getText().toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
 
 
         for(int k = 0; k< action.size();k++){
@@ -350,6 +521,7 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
 
     class ViewHolder {
 
+        Match match;
 
         LinearLayout bestOf1;
         LinearLayout bestOf3;

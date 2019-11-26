@@ -24,17 +24,16 @@ public class Match extends Game implements Serializable,Parcelable {
     private String team_B_map3_score;
 
 
-    //Default constructori, scoret nolliksi kun debuggailu on done
     public Match() {
 
-        teamAMapScore = "A1";
-        teamBMapScore = "B1";
-        team_A_map1_score = "SA1";
-        team_B_map1_score = "SB1";
-        team_A_map2_score = "SA2";
-        team_B_map2_score ="SB2";
-        team_A_map3_score ="SA3";
-        team_B_map3_score ="SB3";
+        teamAMapScore = "0";
+        teamBMapScore = "0";
+        team_A_map1_score = "0";
+        team_B_map1_score = "0";
+        team_A_map2_score = "0";
+        team_B_map2_score ="0";
+        team_A_map3_score ="0";
+        team_B_map3_score ="0";
     }
 
 
