@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 public class Match extends Game implements Serializable,Parcelable {
 
+
+    private Integer matchID;
     private ArrayList<String> teams = new ArrayList<>();
     private String gameFormat;
     private ArrayList<String> mapInfo = new ArrayList<>();
@@ -36,6 +38,14 @@ public class Match extends Game implements Serializable,Parcelable {
         team_B_map3_score ="0";
     }
 
+
+    public Integer getMatchID() {
+        return matchID;
+    }
+
+    public void setMatchID(Integer matchID) {
+        this.matchID = matchID;
+    }
 
     public String getTeam_A_map1_score() {
         return team_A_map1_score;

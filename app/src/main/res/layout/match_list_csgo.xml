@@ -14,6 +14,12 @@
         android:orientation="vertical"
         android:visibility="gone">
 
+        <Button
+            android:id="@+id/Bo3SaveScores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Savescores" />
+
         <TextView
             android:id="@+id/bo3MatchFormatTitle"
             android:layout_width="match_parent"
@@ -469,7 +475,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
+
+        <Button
+            android:id="@+id/Bo1SaveScores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Savescores" />
 
         <TextView
             android:id="@+id/bo1MatchFormatTitle"

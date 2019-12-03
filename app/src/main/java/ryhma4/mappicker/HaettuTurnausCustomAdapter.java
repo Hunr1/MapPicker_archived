@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -129,6 +130,9 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
             holder.Bo1ban4Name = convertView.findViewById(R.id.Bo1ban4Name);
             holder.Bo1ban5Name = convertView.findViewById(R.id.Bo1ban5Name);
             holder.Bo1ban6Name = convertView.findViewById(R.id.Bo1ban6Name);
+
+            holder.Bo3saveScore=convertView.findViewById(R.id.Bo3SaveScores);
+            holder.Bo1saveScore=convertView.findViewById(R.id.Bo1SaveScores);
             convertView.setTag(holder);
 
         }
@@ -222,7 +226,6 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
                 Log.d("Applikaatio#","Virheellinen määrä dataa mapInfossa");
             }
         }
-
 
         holder.Bo3teamAName.setText(holder.match.getTeamAname());
         holder.Bo3teamBName.setText(holder.match.getTeamBname());
@@ -395,6 +398,42 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
 
 
 
+        //TODO tämän alle tulosten tallentaminen bo3 formaatille
+        //vaatii usean kutsun riippuen turnausformaatista
+        //insertmapscores ja insertpickXscores x formaatti
+        //esim BO3 insertmapscores,insertpick1scores,insertpick2scores.insertpick3scores
+        holder.Bo3saveScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String mapScoreA = holder.match.getTeamAMapScore();
+                String mapScoreB = holder.match.getTeamAMapScore();
+
+                String map1_scoreA  = holder.match.getTeam_A_map1_score();
+                String map1_scoreB = holder.match.getTeam_B_map1_score();
+                //..
+
+                //Log.d("applikaatio","Tallennetaan tietokantaan scoret " + map1_scoreA + " ja " + map1_scoreB);
+            }
+        });
+
+
+        //TODO tämän alle tulosten tallentaminen bo1 formaatille
+        holder.Bo1saveScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String mapScoreA = holder.match.getTeamAMapScore();
+                String mapScoreB = holder.match.getTeamAMapScore();
+
+                String map1_scoreA  = holder.match.getTeam_A_map1_score();
+                String map1_scoreB = holder.match.getTeam_B_map1_score();
+
+                //Log.d("applikaatio","Tallennetaan tietokantaan scoret " + map1_scoreA + " ja " + map1_scoreB);
+            }
+        });
+
+
 
         for(int k = 0; k< action.size();k++){
             Log.d("Applikaatio","Toiminto = " + action.get(k));
@@ -521,6 +560,8 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
 
     class ViewHolder {
 
+        Button Bo1saveScore;
+        Button Bo3saveScore;
         Match match;
 
         LinearLayout bestOf1;

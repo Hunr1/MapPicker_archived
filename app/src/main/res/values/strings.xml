@@ -41,6 +41,7 @@
 
     <string name="TeamAandTeamName">Team A = %1$s</string>
     <string name="TeamBandTeamName">Team B = %1$s</string>
+    <string name="Savescores">Save scores</string>
 
     <string-array name="BanActions">
         <item>Empty</item>

@@ -181,7 +181,12 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
             match.addToMapINfo(pickedMaps.get(i));
         }
 
-        //Näiden lisäksi tietokantaan tulee karttavoitot ja karttojen tulokset, joita muutetaan HaettuTurnaus luokassa
+        //TODO tähän väliin uuden ottelun tallentaminen (TournamentID, TeamA ja Team B nimet, Formaatti)
+        //API palauttaa matchIDn joka tallennetaan luotuun match olioon
+
+        //match.setMatchID(BLAA);
+
+        //Näiden lisäksi tietokantaan tulee karttavoitot ja karttojen tulokset, joita muutetaan HaettuTurnausCustomAdapter luokassa save scores onclick funktiossa
 
         //palauttaa luodun uuden Match olion
         Intent i = new Intent(LisaaOttelu.this, HaettuTurnaus.class);
