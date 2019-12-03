@@ -4,7 +4,17 @@ public class Tournament extends Match {
 
     private String tournamentID;
     private String tournamentName;
-    private String mapPoolID;
+    private Integer tournamentFormat;
+
+
+    public Integer getTournamentFormat() {
+        return tournamentFormat;
+    }
+
+    public void setTournamentFormat(Integer tournamentFormat) {
+        this.tournamentFormat = tournamentFormat;
+    }
+
 
     public String getTournamentID() {
         return tournamentID;
@@ -14,14 +24,6 @@ public class Tournament extends Match {
         this.tournamentID = tournamentID;
     }
 
-    public String getMapPoolID() {
-        return mapPoolID;
-    }
-
-    public void setMapPoolID(String mapPoolID) {
-        this.mapPoolID = mapPoolID;
-    }
-
     public String getTournamentName() {
         return tournamentName;
     }
@@ -29,4 +31,6 @@ public class Tournament extends Match {
     public void setTournamentName(String tournamentName) {
         this.tournamentName = tournamentName;
     }
+
+
 }

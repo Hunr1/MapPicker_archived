@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         TournamentEngine engine = TournamentApplication.getEngine();
         for (int i = 0; i < engine.countOfTournaments(); i++) {
             Tournament tournament = engine.tournamentByID(i);
-            listaItemit.add(tournament.getTournamentID());
+            listaItemit.add(tournament.getTournamentName() + " : " + tournament.getTournamentID());
         }
 
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(this,
@@ -130,22 +131,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void sleepDone() {
         try {
-            Tournament fromDB = new Tournament();
-            JSONObject resultFromDB = new JSONObject(getFromDB.getResult());
-            fromDB.setTournamentID(resultFromDB.getString("idTournament"));
-            fromDB.setTournamentName(resultFromDB.getString("TournamentName"));
-            fromDB.setGameFormat(resultFromDB.getString("TournamentDefaultFormat"));
-            fromDB.setMapPoolID(resultFromDB.getString("MapPoolID"));
 
-            tournamentEngine.addTournament(fromDB);
+            JSONObject object = new JSONObject(getFromDB.getResult());
+            JSONArray array = object.getJSONArray("Tournaments");
+
+            for (int i = 0; i < array.length(); i++) {
+                Tournament fromDB = new Tournament();
+                JSONObject obj = array.optJSONObject(i);
+                fromDB.setTournamentID(obj.getString("Tournament ID"));
+                fromDB.setTournamentName(obj.getString("Tournament name"));
+                fromDB.setGameFormat(obj.getString("Tournament format"));
+                tournamentEngine.addTournament(fromDB);
+            }
             Log.d("Tietokannasta: ", getFromDB.getResult());
             paivitaLista();
 
         }catch (Exception e)
         {
-            Log.d("SLEEPDONE_ERROR", "e");
+            Log.d("SLEEPDONE_ERROR", e.toString());
         }
-
-
     }
 }

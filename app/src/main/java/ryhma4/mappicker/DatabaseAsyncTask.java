@@ -46,7 +46,7 @@ public class DatabaseAsyncTask extends AsyncTask< String, Integer, Boolean> {
 
     private void executeTask() {
         try {
-            URL url = new URL("https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/test/get-tournament");
+            URL url = new URL("https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/getalltournamentids");
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             InputStream stream = urlConnection.getInputStream();
             result = fromStream(stream);
