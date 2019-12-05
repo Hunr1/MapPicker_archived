@@ -10,7 +10,6 @@ public class Match extends Game implements Serializable,Parcelable {
 
 
     private Integer matchID;
-    private ArrayList<String> teams = new ArrayList<>();
     private String gameFormat;
     private ArrayList<String> mapInfo = new ArrayList<>();
     private String teamAname;
@@ -119,14 +118,6 @@ public class Match extends Game implements Serializable,Parcelable {
         this.gameFormat = format;
     }
 
-    public ArrayList<String> getTeams() {
-        return teams;
-    }
-
-    public void setTeam(String team) {
-        this.teams.add(team);
-    }
-
     public ArrayList<String> getMapInfo() {
         return mapInfo;
     }
@@ -157,7 +148,6 @@ public class Match extends Game implements Serializable,Parcelable {
 
 
     protected Match(Parcel in) {
-        teams = in.createStringArrayList();
         gameFormat = in.readString();
         mapInfo = in.createStringArrayList();
         teamAname = in.readString();
@@ -192,7 +182,6 @@ public class Match extends Game implements Serializable,Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStringList(teams);
         parcel.writeString(gameFormat);
         parcel.writeStringList(mapInfo);
         parcel.writeString(teamAname);

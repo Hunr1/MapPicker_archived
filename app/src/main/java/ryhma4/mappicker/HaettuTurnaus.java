@@ -35,12 +35,15 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
         tourID = getIntent().getIntExtra("TOURNAMENT_ID", -1);
         adapter = new HaettuTurnausCustomAdapter(this, R.layout.match_list_csgo, matches);
         haettuTurnausListView.setAdapter(adapter);
-
         if (tourID >= 0) {
             Tournament tournament = TournamentApplication.getEngine().tournamentByID(tourID);
             tournamentId = findViewById(R.id.tournamentID);
             tournamentId.setText(getString(R.string.IDText,tournament.getTournamentID()));
         }
+
+        //TODO API kutsu getMatchesByTournamentID  turnausID:n kanssa. Jos palauttaa tyhjän arrayn ei tehdä mittään,
+        //jos otteluita löytyy tehdään uusia matches olioja palautetulla datalla ja tallennetaan matches arraylistiin
+
 
         findViewById(R.id.ManageTournamentBtn).setOnClickListener(this);
     }

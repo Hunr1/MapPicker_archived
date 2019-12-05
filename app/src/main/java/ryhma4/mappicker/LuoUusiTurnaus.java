@@ -75,7 +75,6 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
                      adapter.notifyDataSetChanged();
                      lvTeams.setSelector(R.color.colorTransparent);
 
-
                      selectedItem = -1;
                  }
                 break;
