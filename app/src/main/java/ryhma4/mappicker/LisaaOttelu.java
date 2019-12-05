@@ -51,6 +51,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
     String teamBname;
     String game = "CS:GO";
     String playedMapSide;
+    String matchInfoString = "";
 
     List<String> pickedMaps;
     ArrayList<Map> csgoMaplist;
@@ -178,10 +179,12 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
         match.setGameFormat(bestOfDropdown.getSelectedItem().toString());
 
         for(int i = 0; i< pickedMaps.size();i++){
-            match.addToMapINfo(pickedMaps.get(i));
+            matchInfoString = matchInfoString  + pickedMaps.get(i) + "|";
+            match.addToMapInfo(pickedMaps.get(i));
         }
 
-        //TODO tähän väliin uuden ottelun tallentaminen (TournamentID, TeamA ja Team B nimet, Formaatti)
+        matchInfoString = matchInfoString.substring(0, matchInfoString.length() - 1);
+        //TODO tähän väliin uuden ottelun tallentaminen (TournamentID, TeamA ja Team B nimet, Formaatti,MatchInfo(matchInfoString))
         //API palauttaa matchIDn joka tallennetaan luotuun match olioon
 
         //match.setMatchID(BLAA);
@@ -402,7 +405,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                         @Override
                         public void onClick(View view) {
 
-                            playedMapSide = teamBdropdown.getSelectedItem().toString() + "/CT";
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);
@@ -441,7 +443,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
                         @Override
                         public void onClick(View view) {
 
-                            playedMapSide = teamAdropdown.getSelectedItem().toString() + "/CT";
                             csgoMaplist.remove(position);
                             adapter.notifyDataSetChanged();
                             startingSideFrame.setVisibility(View.INVISIBLE);

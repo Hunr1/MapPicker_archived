@@ -135,7 +135,7 @@ public class Match extends Game implements Serializable,Parcelable {
         this.mapInfo = mapInfo;
     }
 
-    public void addToMapINfo(String mapInfo) {
+    public void addToMapInfo(String mapInfo) {
         this.mapInfo.add(mapInfo);
     }
 

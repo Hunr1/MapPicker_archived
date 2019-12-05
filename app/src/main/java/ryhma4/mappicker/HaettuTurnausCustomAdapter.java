@@ -198,7 +198,6 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
         ArrayList<String> whoPickedSide = new ArrayList<>();
 
         mapInfo = holder.match.getMapInfo();
-        Log.d("Applikaatio","map info = " + holder.match.getMapInfo().toString());
 
         for(int counter = 0;counter < mapInfo.size(); counter++){
             String[] splittedMapInfo = mapInfo.get(counter).split("/");
@@ -436,7 +435,6 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
 
 
         for(int k = 0; k< action.size();k++){
-            Log.d("Applikaatio","Toiminto = " + action.get(k));
             switch (action.get(k)){
                 case("Pick 1"):
                     holder.Bo3pick1Name.setText(mapName.get(k));
