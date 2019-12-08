@@ -2,6 +2,7 @@ package ryhma4.mappicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DatabaseAsyncTask getFromDB = new DatabaseAsyncTask();
     TournamentEngine tournamentEngine;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,12 +115,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void paivitaLista() {
         ListView listaNakyma = findViewById(R.id.TournamentsList);
-
         ArrayList<String> listaItemit = new ArrayList<>();
         TournamentEngine engine = TournamentApplication.getEngine();
+
         for (int i = 0; i < engine.countOfTournaments(); i++) {
+
             Tournament tournament = engine.tournamentByID(i);
             listaItemit.add(tournament.getTournamentName() + " : " + tournament.getTournamentID());
+
         }
 
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(this,
@@ -143,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 fromDB.setGameFormat(obj.getString("Tournament format"));
                 tournamentEngine.addTournament(fromDB);
             }
+
             Log.d("Tietokannasta: ", getFromDB.getResult());
             paivitaLista();
 

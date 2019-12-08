@@ -15,6 +15,7 @@
     <string name="luo_GameNameText">Choose a game:</string>
     <string name="luo_matchFormatText">Choose a format:</string>
     <string name="luo_SelectTeamsText">Select teams</string>
+    <string name="luo_TournamentNameText">Tournament name:</string>
     <string name="luo_generateID">Generate ID</string>
 
 
@@ -113,4 +114,7 @@
         <item>Best of 3</item>
         <item>Best of 5</item>
     </string-array>
+
+    //api urls
+    <string name="addTournamentURL">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/addnewtournament?TournamentName=%1$s&amp;TournamentDefaultFormat=%2$s&amp;Teams=%3$s&amp;GameName=%4$s</string>
 </resources>

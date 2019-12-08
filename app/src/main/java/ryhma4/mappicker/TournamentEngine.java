@@ -21,4 +21,10 @@ public class TournamentEngine {
             return null;
         }
     }
+
+    public void deleteTournamentByID(int index) {
+        if (allTournaments.size() > index) {
+            allTournaments.remove(index);
+        }
+    }
 }

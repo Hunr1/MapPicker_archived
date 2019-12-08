@@ -41,7 +41,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
     Button backBtn;
     Button CTChoose;
     Button TerroristChoose;
-
+    TournamentEngine engine;
 
     int bestOf = 0;
     int clickCounter = 0;
@@ -194,6 +194,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
         //palauttaa luodun uuden Match olion
         Intent i = new Intent(LisaaOttelu.this, HaettuTurnaus.class);
         i.putExtra("newMatch", (Serializable)match);
+        i.putExtra("TOURNAMENT_ID", tourID);
         startActivity(i);
     }
 

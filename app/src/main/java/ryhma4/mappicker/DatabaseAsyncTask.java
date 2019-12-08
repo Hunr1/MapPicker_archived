@@ -7,15 +7,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class DatabaseAsyncTask extends AsyncTask< String, Integer, Boolean> {
 
-
-    private String tournamentID;
     private String result;
 
     interface OnSleepProgressUpdate {

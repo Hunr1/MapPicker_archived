@@ -2,6 +2,7 @@ package ryhma4.mappicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +12,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -23,6 +39,10 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
     Button deleteTeam;
     ListView lvTeams;
     EditText etGetTeam;
+    EditText etTournamentName;
+    Spinner gameName;
+    Spinner gameFormat;
+    String selectedameName;
     ArrayAdapter<String> adapter;
     ArrayList<String> listTeams;
 
@@ -30,14 +50,18 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.luo_uusi_turnaus);
-
         btnCancel = findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(this);
         btnAddTeam = findViewById(R.id.btnAddTeam);
         btnAddTeam.setOnClickListener(this);
+        btnGenerate = findViewById(R.id.btnGenerate);
+        btnGenerate.setOnClickListener(this);
         deleteTeam = findViewById(R.id.btnDeleteTeam);
         deleteTeam.setOnClickListener(this);
+        gameName = findViewById(R.id.spinnerGame);
+        gameFormat = findViewById(R.id.spinnerFormat);
 
+        etTournamentName = findViewById(R.id.etTournamentName);
         lvTeams = findViewById(R.id.lvTeams);
         etGetTeam = findViewById(R.id.editTextTeams);
         listTeams = new ArrayList<>();
@@ -47,6 +71,8 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
 
         lvTeams.setOnItemClickListener(this);
 
+
+
     }
 
     @Override
@@ -55,8 +81,8 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
         switch (view.getId()) {
 
             case R.id.btnCancel:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+               //"Tuhoaa" luo uusi turnaus activityn ja näkyviin tulee MainActivity
+                finish();
                 break;
 
             case R.id.btnAddTeam:
@@ -78,7 +104,74 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
                      selectedItem = -1;
                  }
                 break;
-        }
+
+            case R.id.btnGenerate:
+                try {
+                    String teams = new String();
+                    Iterator it = listTeams.listIterator();
+
+                    while (it.hasNext()) {
+                        String s = (String) it.next();
+                        if (it.hasNext()) {
+                            teams += s + "/";
+                        } else {
+                            teams += s;
+                        }
+                    }
+
+                    String url = getString(R.string.addTournamentURL, etTournamentName.getText().toString(), String.valueOf(gameFormat.getSelectedItem()), teams, String.valueOf(gameName.getSelectedItem()));
+                    Log.d("AddingTournamentURL: ", url);
+
+                    //Jotain hämminkiä vielä linkissä tai lambdan suorittamassa koodissa. Antaa errorina:
+                    // errorMessage	"local variable 'data' referenced before assignment"
+                    //errorType	"UnboundLocalError"
+                    //stackTrace
+                    //0	"  File \"/var/task/lambda_function.py\", line 60, in lambda_handler\n    return (data)\n"
+
+                    /*
+                    RequestQueue queue = Volley.newRequestQueue(this);
+                    url = url.replaceAll(" ", "%20");
+                    JsonObjectRequest addTournamentRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                Log.d("response: ", response.getString("idtournament"));
+                                JSONObject result = response.getJSONObject("idtournament");
+
+                                if (!result.getString("idtournament").isEmpty()) {
+
+                                    Toast.makeText(getApplicationContext(),"Tournament added succesfully!",Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(LuoUusiTurnaus.this, MainActivity.class);
+
+                                    i.putExtra("TOURNAMENT_ID", result.getString("idtournament"));
+                                    startActivity(i);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("JSONRequesterror: ", error.toString());
+                            // TODO: Handle error
+                            finish();
+                        }
+                    });
+
+                    queue.add(addTournamentRequest);
+                */
+                }catch (Exception e)
+                {
+                    Log.d("NEW_TOUR_ERROR: ", e.toString());
+                    finish();
+                }
+                    break;
+                }
     }
 
     @Override
