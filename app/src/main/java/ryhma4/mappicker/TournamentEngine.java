@@ -22,6 +22,18 @@ public class TournamentEngine {
         }
     }
 
+    public ArrayList<String> getAllTournamentsIDs()
+    {
+        ArrayList<String> allIDs = new ArrayList<>();
+
+        for (Tournament t: allTournaments
+             ) {
+            allIDs.add(t.getTournamentID());
+        }
+
+      return allIDs;
+    }
+
     public void deleteTournamentByID(int index) {
         if (allTournaments.size() > index) {
             allTournaments.remove(index);

@@ -34,13 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ListView tournamentList = findViewById(R.id.TournamentsList);
         tournamentList.setOnItemClickListener(this);
         tournamentEngine = TournamentApplication.getEngine();
+        getFromDB.setCallback(this);
+        getFromDB.execute("");
 
-        if (tournamentList.getCount() == 0) {
-            getFromDB.setCallback(this);
-            getFromDB.execute("");
-        }
-       /*tournamentEngine.addTournament(luoTestiturnaus());
-        paivitaLista();*/
     }
 
     @Override
@@ -51,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.newTournamentBtn:
                 Intent intent = new Intent(this, LuoUusiTurnaus.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.searchBtn:
@@ -94,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, HaettuTurnaus.class);
         intent.putExtra("TOURNAMENT_ID", index);
         startActivity(intent);
+        finish();
     }
 
    /* public Tournament luoTestiturnaus()
@@ -138,6 +136,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             JSONObject object = new JSONObject(getFromDB.getResult());
             JSONArray array = object.getJSONArray("Tournaments");
+            checkTournamentsArray allTournamentsIDs = new checkTournamentsArray();
+            allTournamentsIDs.addAll(tournamentEngine.getAllTournamentsIDs());
 
             for (int i = 0; i < array.length(); i++) {
                 Tournament fromDB = new Tournament();
@@ -145,7 +145,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 fromDB.setTournamentID(obj.getString("Tournament ID"));
                 fromDB.setTournamentName(obj.getString("Tournament name"));
                 fromDB.setGameFormat(obj.getString("Tournament format"));
-                tournamentEngine.addTournament(fromDB);
+
+                //Ei lisätä jo olemassa olevaa turnausta tournamentEngineen
+                if(!allTournamentsIDs.contains(fromDB.getTournamentID())){
+                    tournamentEngine.addTournament(fromDB);
+                }
+
             }
 
             Log.d("Tietokannasta: ", getFromDB.getResult());
@@ -154,6 +159,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }catch (Exception e)
         {
             Log.d("SLEEPDONE_ERROR", e.toString());
+        }
+    }
+
+
+    // Tarkistus luokka turnausten id:tä varten
+    //https://stackoverflow.com/questions/21724948/how-to-check-arraylist-contains-this-particular-word-in-android
+    public class checkTournamentsArray extends ArrayList<String> {
+        private static final long serialVersionUID = 2178228925760279677L;
+
+        @Override
+        public boolean contains(Object o) {
+            return indexOf(o) >= 0;
+        }
+
+        @Override
+        public int indexOf(Object o) {
+            int size = this.size();
+            if (o == null) {
+                for (int i = 0; i < size ; i++) {
+                    if (this.get(i) == null) {
+                        return i;
+                    }
+                }
+            } else {
+                for (int i = 0; i < size ; i++) {
+                    if (this.get(i).contains(String.valueOf(o))) {
+                        return i;
+                    }
+                }
+            }
+            return -1;
         }
     }
 }

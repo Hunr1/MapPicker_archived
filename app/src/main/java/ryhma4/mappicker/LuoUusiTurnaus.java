@@ -35,6 +35,7 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
     private Button btnCancel;
     private Button btnGenerate;
     private int selectedItem = -1;
+    TournamentEngine tournamentEngine;
     Button btnAddTeam;
     Button deleteTeam;
     ListView lvTeams;
@@ -50,6 +51,7 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.luo_uusi_turnaus);
+        tournamentEngine = TournamentApplication.getEngine();
         btnCancel = findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(this);
         btnAddTeam = findViewById(R.id.btnAddTeam);
@@ -60,11 +62,11 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
         deleteTeam.setOnClickListener(this);
         gameName = findViewById(R.id.spinnerGame);
         gameFormat = findViewById(R.id.spinnerFormat);
-
         etTournamentName = findViewById(R.id.etTournamentName);
         lvTeams = findViewById(R.id.lvTeams);
         etGetTeam = findViewById(R.id.editTextTeams);
         listTeams = new ArrayList<>();
+
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listTeams);
         lvTeams.setAdapter(adapter);
@@ -82,6 +84,8 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
 
             case R.id.btnCancel:
                //"Tuhoaa" luo uusi turnaus activityn ja näkyviin tulee MainActivity
+                Intent intent = new Intent(LuoUusiTurnaus.this, MainActivity.class);
+                startActivity(intent);
                 finish();
                 break;
 
@@ -106,62 +110,63 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.btnGenerate:
-                try {
-                    String teams = new String();
-                    Iterator it = listTeams.listIterator();
 
-                    while (it.hasNext()) {
-                        String s = (String) it.next();
-                        if (it.hasNext()) {
-                            teams += s + "/";
-                        } else {
-                            teams += s;
+                if(!etTournamentName.getText().toString().isEmpty() && !listTeams.isEmpty()) {
+                    try {
+                        String teams = new String();
+                        Iterator it = listTeams.listIterator();
+
+                        while (it.hasNext()) {
+                            String s = (String) it.next();
+                            if (it.hasNext()) {
+                                teams += s + "/";
+                            } else {
+                                teams += s;
+                            }
                         }
-                    }
 
-                    String url = getString(R.string.addTournamentURL, etTournamentName.getText().toString(), String.valueOf(gameFormat.getSelectedItem()), teams, String.valueOf(gameName.getSelectedItem()));
-                    Log.d("AddingTournamentURL: ", url);
+                        String url = getString(R.string.addTournamentURL, etTournamentName.getText().toString(), String.valueOf(gameFormat.getSelectedItem()), teams, String.valueOf(gameName.getSelectedItem()));
+                        Log.d("AddingTournamentURL: ", url);
 
-                    RequestQueue queue = Volley.newRequestQueue(this);
-                    url = url.replaceAll(" ", "%20");
-                    JsonObjectRequest addTournamentRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
+                        RequestQueue queue = Volley.newRequestQueue(this);
+                        url = url.replaceAll(" ", "%20");
+                        JsonObjectRequest addTournamentRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
 
-                            try {
-                                Log.d("response: ", response.getString("idtournament"));
-                                JSONObject result = response.getJSONObject("idtournament");
+                                try {
+                                    Log.d("response: ", response.getString("idtournament"));
+                                    String result = response.getString("idtournament");
 
-                                if (!result.getString("idtournament").isEmpty()) {
+                                    if (!result.isEmpty()) {
 
-                                    Toast.makeText(getApplicationContext(),"Tournament added succesfully!",Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(LuoUusiTurnaus.this, MainActivity.class);
+                                        Toast.makeText(getApplicationContext(), "Tournament added succesfully!", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(LuoUusiTurnaus.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
 
-                                    i.putExtra("TOURNAMENT_ID", result.getString("idtournament"));
-                                    startActivity(i);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
+                        }, new Response.ErrorListener() {
 
-                        }
-                    }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.d("JSONRequesterror: ", error.toString());
+                                // TODO: Handle error
+                                finish();
+                            }
+                        });
 
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("JSONRequesterror: ", error.toString());
-                            // TODO: Handle error
-                            finish();
-                        }
-                    });
+                        queue.add(addTournamentRequest);
 
-                    queue.add(addTournamentRequest);
-
-                }catch (Exception e)
-                {
-                    Log.d("NEW_TOUR_ERROR: ", e.toString());
-                    finish();
+                    } catch (Exception e) {
+                        Log.d("NEW_TOUR_ERROR: ", e.toString());
+                        finish();
+                    }
                 }
                     break;
                 }

@@ -39,6 +39,8 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
             Tournament tournament = TournamentApplication.getEngine().tournamentByID(tourID);
             tournamentId = findViewById(R.id.tournamentID);
             tournamentId.setText(getString(R.string.IDText,tournament.getTournamentID()));
+
+
         }
 
         //TODO API kutsu getMatchesByTournamentID  turnausID:n kanssa. Jos palauttaa tyhjän arrayn ei tehdä mittään,
