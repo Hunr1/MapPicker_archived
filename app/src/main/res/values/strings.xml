@@ -105,6 +105,7 @@
         <item>9</item>
     </string-array>
 
+
     <string-array name="TestTeams">
         <item>Tosi kovat äijät</item>
         <item>Ranuan kynäriseura</item>
@@ -116,5 +117,6 @@
 
     //api urls
     <string name="addMatchAPI">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/addmatch?IDtournament=%1$s&amp;TeamAname=%2$s&amp;TeamBname=%3$s&amp;Format=%4$d&amp;MatchInfo=%5$s</string>
-    <string name="addTournamentURL">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/addnewtournament?TournamentName=%1$s&amp;TournamentDefaultFormat=%2$s&amp;Teams=%3$s&amp;GameName=%4$s</string>
+    <string name="addTournamentAPI">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/addnewtournament?TournamentName=%1$s&amp;TournamentDefaultFormat=%2$s&amp;Teams=%3$s&amp;GameName=%4$s</string>
+    <string name="getMatchesAPI">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/getmatchesbytournamentid?IDtournament=%1$s</string>
 </resources>

@@ -41,8 +41,9 @@
             android:id="@+id/teamADropdown"
             android:layout_width="0px"
             android:layout_height="48dp"
-            android:layout_weight="0.4"
-            android:entries="@array/TestTeams" />
+            android:layout_weight="0.4"/>
+
+
 
         <Button
             android:id="@+id/swap"
@@ -57,8 +58,9 @@
             android:id="@+id/teamBDropdown"
             android:layout_width="0px"
             android:layout_height="48dp"
-            android:layout_weight="0.4"
-            android:entries="@array/TestTeams" />
+            android:layout_weight="0.4"/>
+
+
     </LinearLayout>
 
     <LinearLayout

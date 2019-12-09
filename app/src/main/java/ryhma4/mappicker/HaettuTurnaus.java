@@ -5,12 +5,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 
 public class HaettuTurnaus extends AppCompatActivity implements View.OnClickListener {
@@ -35,16 +49,18 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
         tourID = getIntent().getIntExtra("TOURNAMENT_ID", -1);
         adapter = new HaettuTurnausCustomAdapter(this, R.layout.match_list_csgo, matches);
         haettuTurnausListView.setAdapter(adapter);
+
         if (tourID >= 0) {
             Tournament tournament = TournamentApplication.getEngine().tournamentByID(tourID);
             tournamentId = findViewById(R.id.tournamentID);
             tournamentId.setText(getString(R.string.IDText,tournament.getTournamentID()));
-
+            makeApiCall(tourID);
 
         }
 
         //TODO API kutsu getMatchesByTournamentID  turnausID:n kanssa. Jos palauttaa tyhjän arrayn ei tehdä mittään,
         //jos otteluita löytyy tehdään uusia matches olioja palautetulla datalla ja tallennetaan matches arraylistiin
+
 
 
         findViewById(R.id.ManageTournamentBtn).setOnClickListener(this);
@@ -84,7 +100,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
                 Intent intent = new Intent(HaettuTurnaus.this, LisaaOttelu.class);
                 intent.putExtra("TOURNAMENT_ID", tourID );
                 startActivity(intent);
-                finish();
+
                 break;
         }
     }
@@ -101,6 +117,78 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    public void makeApiCall(int tourID)
+    {
+        String url = getString(R.string.getMatchesAPI,TournamentApplication.getEngine().tournamentByID(tourID).getTournamentID());
+        Log.d("AddingTournamentURL: ", url);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        url = url.replaceAll(" ", "%20");
+
+        JsonObjectRequest addTournamentRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    Log.d("response: ", response.getString("Matches"));
+                    JSONArray result = response.getJSONArray("Matches");
+                    Match match;
+                    if(result.length() != 0) {
+                        for (int i = 0; i < result.length(); i++) {
+                            JSONObject matchObject = result.getJSONObject(i);
+                            match = new Match();
+
+                            match.setTeamAname(matchObject.getString("teamAname"));
+                            match.setTeamBname(matchObject.getString("teamBname"));
+                            match.setGameFormat(matchObject.getString("format"));
+
+                            List<String> pickedMaps = Arrays.asList(matchObject.getString("matchInfo").split("\\|"));
+
+                            for (String s: pickedMaps
+                                 ) {
+
+                                Log.d("PICKEDMAPS: ", s);
+                                match.addToMapInfo(s);
+                            }
+
+                            matches.add(match);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    else{
+                        adapter.clear();
+                        adapter.notifyDataSetChanged();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("JSONRequesterror: ", error.toString());
+                // TODO: Handle error
+                finish();
+            }
+        });
+
+        queue.add(addTournamentRequest);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            adapter.clear();
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }
 

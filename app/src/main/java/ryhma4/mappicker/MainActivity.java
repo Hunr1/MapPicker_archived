@@ -2,7 +2,6 @@ package ryhma4.mappicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +16,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
+
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, DatabaseAsyncTask.OnSleepProgressUpdate{
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.newTournamentBtn:
                 Intent intent = new Intent(this, LuoUusiTurnaus.class);
                 startActivity(intent);
-                finish();
                 break;
 
             case R.id.searchBtn:
@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = new Intent(this, HaettuTurnaus.class);
         intent.putExtra("TOURNAMENT_ID", index);
         startActivity(intent);
-        finish();
     }
 
    /* public Tournament luoTestiturnaus()
@@ -139,12 +138,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             checkTournamentsArray allTournamentsIDs = new checkTournamentsArray();
             allTournamentsIDs.addAll(tournamentEngine.getAllTournamentsIDs());
 
+
             for (int i = 0; i < array.length(); i++) {
                 Tournament fromDB = new Tournament();
                 JSONObject obj = array.optJSONObject(i);
                 fromDB.setTournamentID(obj.getString("Tournament ID"));
                 fromDB.setTournamentName(obj.getString("Tournament name"));
                 fromDB.setGameFormat(obj.getString("Tournament format"));
+
+
+                ArrayList<String> teams = new  ArrayList<>(Arrays.asList(obj.getString("Teams").split("/")));
+                Log.d("TNAME: ", fromDB.getTournamentName());
+                for (String team: teams
+                     ) {
+                    fromDB.addTeam(team);
+                }
+                Log.d("TEAMS: ", fromDB.getTeams().toString());
 
                 //Ei lisätä jo olemassa olevaa turnausta tournamentEngineen
                 if(!allTournamentsIDs.contains(fromDB.getTournamentID())){

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -36,6 +37,8 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
     ListView mapList;
     Spinner teamAdropdown;
     Spinner teamBdropdown;
+    ArrayList<String> teams = new ArrayList<>();
+
     Spinner bestOfDropdown;
     TextView pickingTeam;
     TextView action;
@@ -84,6 +87,16 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
         teamAdropdown = findViewById(R.id.teamADropdown);
         teamBdropdown = findViewById(R.id.teamBDropdown);
+
+        teams = TournamentApplication.getEngine().tournamentByID(tourID).getTeams();
+
+        ArrayAdapter<String> teamsAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, teams);
+        teamsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        teamAdropdown.setAdapter(teamsAdapter);
+        teamBdropdown.setAdapter(teamsAdapter);
+
         chooseTeamsLayout=findViewById(R.id.addMatch_teams_layout);
         bestOfLayout=findViewById(R.id.addMatch_bestOf_layout);
         readyButton = findViewById(R.id.readyButton);

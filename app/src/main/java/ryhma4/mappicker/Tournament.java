@@ -38,7 +38,7 @@ public class Tournament extends Match {
         return teams;
     }
 
-    public void setTeam(String team) {
+    public void addTeam(String team) {
         this.teams.add(team);
     }
 

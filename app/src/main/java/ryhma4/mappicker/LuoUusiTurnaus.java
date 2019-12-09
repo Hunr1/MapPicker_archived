@@ -3,6 +3,7 @@ package ryhma4.mappicker;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -125,11 +126,12 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
                             }
                         }
 
-                        String url = getString(R.string.addTournamentURL, etTournamentName.getText().toString(), String.valueOf(gameFormat.getSelectedItem()), teams, String.valueOf(gameName.getSelectedItem()));
+                        String url = getString(R.string.addTournamentAPI, etTournamentName.getText().toString(), String.valueOf(gameFormat.getSelectedItem()), teams, String.valueOf(gameName.getSelectedItem()));
                         Log.d("AddingTournamentURL: ", url);
 
                         RequestQueue queue = Volley.newRequestQueue(this);
                         url = url.replaceAll(" ", "%20");
+
                         JsonObjectRequest addTournamentRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
