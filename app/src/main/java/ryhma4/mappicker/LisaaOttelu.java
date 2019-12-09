@@ -3,6 +3,7 @@ package ryhma4.mappicker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,15 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -47,11 +57,14 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
     int clickCounter = 0;
     int tourID;
 
+    private static final String ALLOWED_URI_CHARS = "@#&=*+-_.,:!?()/~'%";
+
     String teamAname;
     String teamBname;
     String game = "CS:GO";
     String playedMapSide;
     String matchInfoString = "";
+    String tournamentID;
 
     List<String> pickedMaps;
     ArrayList<Map> csgoMaplist;
@@ -186,6 +199,44 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
         matchInfoString = matchInfoString.substring(0, matchInfoString.length() - 1);
         //TODO tähän väliin uuden ottelun tallentaminen (TournamentID, TeamA ja Team B nimet, Formaatti,MatchInfo(matchInfoString))
         //API palauttaa matchIDn joka tallennetaan luotuun match olioon
+
+        Tournament tournament = TournamentApplication.getEngine().tournamentByID(tourID);
+        tournamentID = tournament.getTournamentID();
+
+        Log.d("matchInfoString", matchInfoString);
+        String url = getString(R.string.addMatchAPI, tournamentID, teamAname, teamBname, Integer.valueOf(bestOfDropdown.getSelectedItem().toString()), matchInfoString);
+        url = Uri.encode(url, ALLOWED_URI_CHARS);
+
+        Log.d("APIURL", url);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonObjectRequest addMatchRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    Log.d("addMatchResponse", response.toString());
+                    // JSONObject result = response.getJSONObject("idmatch");
+                    int matchID = response.getInt("idmatch");
+
+                    match.setMatchID(matchID);
+                    Log.d("MATCHID", match.getMatchID().toString());
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("AddmatchError", error.toString());
+
+            }
+        });
+        queue.add(addMatchRequest);
 
         //match.setMatchID(BLAA);
 
