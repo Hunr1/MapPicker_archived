@@ -13,11 +13,20 @@
 
     <!-- luo_uusi_turnaus.xml strings: -->
     <string name="luo_GameNameText">Choose a game:</string>
-    <string name="luo_matchFormatText">Choose a format:</string>
+    <string name="luo_matchFormatText">Choose a format(best of x):</string>
     <string name="luo_SelectTeamsText">Select teams</string>
     <string name="luo_TournamentNameText">Tournament name:</string>
     <string name="luo_generateID">Generate ID</string>
-
+    <string name="luo_Cancel">Cancel</string>
+    <string name="luo_btnAdd">Add</string>
+    <string-array name="spinnerGameItems">
+        <item>Counter-Strike: Global Offensive</item>
+    </string-array>
+    <string-array name="spinnerFormatItems">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+    </string-array>
 
     <string name="line"> - </string>
 
@@ -104,16 +113,6 @@
         <item>Tuusula titaanit</item>
     </string-array>
 
-    <string name="luo_Cancel">Cancel</string>
-    <string name="luo_btnAdd">Add</string>
-    <string-array name="spinnerGameItems">
-        <item>Counter Strike: Global Offensive</item>
-    </string-array>
-    <string-array name="spinnerFormatItems">
-        <item>Best of 1</item>
-        <item>Best of 3</item>
-        <item>Best of 5</item>
-    </string-array>
 
     //api urls
     <string name="addTournamentURL">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/addnewtournament?TournamentName=%1$s&amp;TournamentDefaultFormat=%2$s&amp;Teams=%3$s&amp;GameName=%4$s</string>

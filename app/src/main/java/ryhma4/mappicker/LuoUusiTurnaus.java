@@ -122,13 +122,6 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
                     String url = getString(R.string.addTournamentURL, etTournamentName.getText().toString(), String.valueOf(gameFormat.getSelectedItem()), teams, String.valueOf(gameName.getSelectedItem()));
                     Log.d("AddingTournamentURL: ", url);
 
-                    //Jotain hämminkiä vielä linkissä tai lambdan suorittamassa koodissa. Antaa errorina:
-                    // errorMessage	"local variable 'data' referenced before assignment"
-                    //errorType	"UnboundLocalError"
-                    //stackTrace
-                    //0	"  File \"/var/task/lambda_function.py\", line 60, in lambda_handler\n    return (data)\n"
-
-                    /*
                     RequestQueue queue = Volley.newRequestQueue(this);
                     url = url.replaceAll(" ", "%20");
                     JsonObjectRequest addTournamentRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -164,7 +157,7 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
                     });
 
                     queue.add(addTournamentRequest);
-                */
+
                 }catch (Exception e)
                 {
                     Log.d("NEW_TOUR_ERROR: ", e.toString());
