@@ -1,6 +1,7 @@
 package ryhma4.mappicker;
 
 import android.content.Context;
+import android.net.Uri;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -13,9 +14,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,14 +35,18 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
     private Context mContext;
     private  int mResource;
     private String game;
+    private int tournID;
+
+
 
     ArrayList<Map> csgoMaplist;
 
-    HaettuTurnausCustomAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Match> objects) {
+    HaettuTurnausCustomAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Match> objects, int tourID) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
         game =  "CS:GO";
+        tournID = tourID;
     }
 
     @NonNull
@@ -41,6 +54,7 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
     public View getView(final int position, @Nullable View convertView, @NonNull final ViewGroup parent) {
 
         final ViewHolder holder;
+
 
         if(convertView==null){
             LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -422,15 +436,51 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
             @Override
             public void onClick(View view) {
 
+                try {
                 String mapScoreA = holder.match.getTeamAMapScore();
                 String mapScoreB = holder.match.getTeamAMapScore();
 
-                String map1_scoreA  = holder.match.getTeam_A_map1_score();
-                String map1_scoreB = holder.match.getTeam_B_map1_score();
+                Log.d("pickscore", holder.match.getTeam_A_map1_score());
+                Log.d("pickscores2", holder.match.getTeam_B_map1_score() + " " + holder.match.getMatchID().toString());
 
-                //Log.d("applikaatio","Tallennetaan tietokantaan scoret " + map1_scoreA + " ja " + map1_scoreB);
+                Tournament tournament = TournamentApplication.getEngine().tournamentByID(tournID);
+                String tid = tournament.getTournamentID();
+
+              //  String map1scoreA = holder.match.getTeam_A_map1_score();
+               // String map1scoreB = holder.match.getTeam_B_map1_score();
+
+                    String map1_scoreA = holder.match.getTeam_A_map1_score();
+                    String map1_scoreB = holder.match.getTeam_B_map1_score();
+
+                int matchID = holder.match.getMatchID();
+                String url = getContext().getString(R.string.insertPick1Scores, matchID, tid, map1_scoreA, map1_scoreB);
+
+                url = Uri.encode(url, "@#&=*+-_.,:!?()/~'%");
+
+                RequestQueue queue = Volley.newRequestQueue(getContext());
+                Log.d("HTCAURL", url );
+
+                StringRequest insertScore = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("Stringrequest", response);
+                        Toast.makeText(getContext(), "Score saved", Toast.LENGTH_LONG).show();
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("VolleyError", error.toString());
+                    }
+                });
+
+                queue.add(insertScore);
+
+             //  Log.d("applikaatio","Tallennetaan tietokantaan scoret " + map1scoreA + " ja " + map1scoreB);
+            }  catch (Exception e) {
+                Log.d("Errorr", e.toString());
             }
-        });
+        }});
 
 
 
