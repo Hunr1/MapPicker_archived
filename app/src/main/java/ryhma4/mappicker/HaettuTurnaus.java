@@ -80,6 +80,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
         switch (view.getId())
         {
             case R.id.ManageTournamentBtn:
+                adapter.clear();
                 Intent intent = new Intent(HaettuTurnaus.this, LisaaOttelu.class);
                 intent.putExtra("TOURNAMENT_ID", tourID );
                 intent.putExtra("GAME",game);
