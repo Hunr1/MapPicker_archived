@@ -17,7 +17,7 @@ import com.android.volley.toolbox.Volley;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Match extends Game implements Serializable,Parcelable {
+public class Match extends Game implements Parcelable {
 
 
     private Integer matchID;
@@ -34,10 +34,17 @@ public class Match extends Game implements Serializable,Parcelable {
     private String team_B_map2_score;
     private String team_A_map3_score;
     private String team_B_map3_score;
+    private String team_A_map4_score;
+    private String team_B_map4_score;
+    private String team_A_map5_score;
+    private String team_B_map5_score;
+    private String team_A_map6_score;
+    private String team_B_map6_score;
+    private String team_A_map7_score;
+    private String team_B_map7_score;
 
 
     public Match() {
-
         teamAMapScore = "0";
         teamBMapScore = "0";
         team_A_map1_score = "0";
@@ -46,8 +53,79 @@ public class Match extends Game implements Serializable,Parcelable {
         team_B_map2_score ="0";
         team_A_map3_score ="0";
         team_B_map3_score ="0";
+        team_A_map4_score ="0";
+        team_B_map4_score ="0";
+        team_A_map5_score ="0";
+        team_B_map5_score ="0";
+        team_A_map6_score ="0";
+        team_B_map6_score ="0";
+        team_A_map7_score ="0";
+        team_B_map7_score ="0";
     }
 
+    public String getTeam_A_map4_score() {
+        return team_A_map4_score;
+    }
+
+    public void setTeam_A_map4_score(String team_A_map4_score) {
+        this.team_A_map4_score = team_A_map4_score;
+    }
+
+    public String getTeam_B_map4_score() {
+        return team_B_map4_score;
+    }
+
+    public void setTeam_B_map4_score(String team_B_map4_score) {
+        this.team_B_map4_score = team_B_map4_score;
+    }
+
+    public String getTeam_A_map5_score() {
+        return team_A_map5_score;
+    }
+
+    public void setTeam_A_map5_score(String team_A_map5_score) {
+        this.team_A_map5_score = team_A_map5_score;
+    }
+
+    public String getTeam_B_map5_score() {
+        return team_B_map5_score;
+    }
+
+    public void setTeam_B_map5_score(String team_B_map5_score) {
+        this.team_B_map5_score = team_B_map5_score;
+    }
+
+    public String getTeam_A_map6_score() {
+        return team_A_map6_score;
+    }
+
+    public void setTeam_A_map6_score(String team_A_map6_score) {
+        this.team_A_map6_score = team_A_map6_score;
+    }
+
+    public String getTeam_B_map6_score() {
+        return team_B_map6_score;
+    }
+
+    public void setTeam_B_map6_score(String team_B_map6_score) {
+        this.team_B_map6_score = team_B_map6_score;
+    }
+
+    public String getTeam_A_map7_score() {
+        return team_A_map7_score;
+    }
+
+    public void setTeam_A_map7_score(String team_A_map7_score) {
+        this.team_A_map7_score = team_A_map7_score;
+    }
+
+    public String getTeam_B_map7_score() {
+        return team_B_map7_score;
+    }
+
+    public void setTeam_B_map7_score(String team_B_map7_score) {
+        this.team_B_map7_score = team_B_map7_score;
+    }
 
     public Integer getMatchID() {
         return matchID;

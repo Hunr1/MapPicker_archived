@@ -54,13 +54,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
             tournamentId.setText(getString(R.string.IDText,tournament.getTournamentID()));
             makeApiCall(tourID);
         }
-
-        //TODO API kutsu getMatchesByTournamentID  turnausID:n kanssa. Jos palauttaa tyhjän arrayn ei tehdä mittään,
-        //jos otteluita löytyy tehdään uusia matches olioja palautetulla datalla ja tallennetaan matches arraylistiin
-
-
-
-        findViewById(R.id.ManageTournamentBtn).setOnClickListener(this);
+      findViewById(R.id.ManageTournamentBtn).setOnClickListener(this);
     }
 
     @Override
@@ -74,14 +68,6 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
         matches = SavedMatches.getInstance().getSavedMatches();
 
         //hakee lisaaOttelu luokassa tehdyn ottelun
-        Intent i = getIntent();
-        Match haettuOttelu = i.getParcelableExtra("newMatch");
-
-        if(haettuOttelu!=null) {
-            Log.d("Applikaatio", "trying to add new match");
-            //lisää ottelun matches listaan
-            matches.add(haettuOttelu);
-        }
         Collections.reverse(matches);
 
         adapter.notifyDataSetChanged();

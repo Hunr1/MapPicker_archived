@@ -236,7 +236,6 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
         //palauttaa luodun uuden Match olion HaettuTurnaus activityyn
         Intent i = new Intent(LisaaOttelu.this, HaettuTurnaus.class);
-        i.putExtra("newMatch", (Serializable)match);
         i.putExtra("TOURNAMENT_ID", tourID);
         i.putExtra("GAME",game);
         startActivity(i);
