@@ -31,7 +31,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
 
     TextView tournamentId;
     private int tourID;
-
+    private String game;
 
 
     ListView haettuTurnausListView;
@@ -48,6 +48,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
         matches = SavedMatches.getInstance().getSavedMatches();
         Log.d("Applikaatio","On create");
         tourID = getIntent().getIntExtra("TOURNAMENT_ID", -1);
+        game = getIntent().getStringExtra("GAME");
         adapter = new HaettuTurnausCustomAdapter(this, R.layout.match_list_csgo, matches, tourID);
         haettuTurnausListView.setAdapter(adapter);
 
@@ -56,7 +57,6 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
             tournamentId = findViewById(R.id.tournamentID);
             tournamentId.setText(getString(R.string.IDText,tournament.getTournamentID()));
             makeApiCall(tourID);
-
         }
 
         //TODO API kutsu getMatchesByTournamentID  turnausID:n kanssa. Jos palauttaa tyhjän arrayn ei tehdä mittään,
@@ -100,6 +100,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
             case R.id.ManageTournamentBtn:
                 Intent intent = new Intent(HaettuTurnaus.this, LisaaOttelu.class);
                 intent.putExtra("TOURNAMENT_ID", tourID );
+                intent.putExtra("GAME",game);
                 startActivity(intent);
 
                 break;

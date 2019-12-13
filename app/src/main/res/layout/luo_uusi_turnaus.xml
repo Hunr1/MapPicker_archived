@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_weight="0.5"
-            android:entries="@array/spinnerGameItems" />
+            android:entries="@array/Games" />
 
     </LinearLayout>
 
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_weight="0.5"
-            android:entries="@array/spinnerFormatItems" />
+            android:entries="@array/bestOf" />
 
     </LinearLayout>
 

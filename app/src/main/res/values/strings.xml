@@ -19,18 +19,8 @@
     <string name="luo_generateID">Generate ID</string>
     <string name="luo_Cancel">Cancel</string>
     <string name="luo_btnAdd">Add</string>
-    <string-array name="spinnerGameItems">
-        <item>Counter-Strike: Global Offensive</item>
-    </string-array>
-    <string-array name="spinnerFormatItems">
-        <item>1</item>
-        <item>3</item>
-        <item>5</item>
-    </string-array>
 
     <string name="line"> - </string>
-
-
 
     <!-- lisaa_ottelu.xml strings: -->
     <string name="TeamA">Team A</string>
@@ -73,7 +63,7 @@
         <item>Pick 6</item>
     </string-array>
 
-    <!-- Map names -->
+    <!-- Map names CS:GO -->
     <string-array name="mapNames">
         <item>Dust II</item>
         <item>Inferno</item>
@@ -84,7 +74,7 @@
         <item>Vertigo</item>
     </string-array>
 
-    <!-- Image file names -->
+    <!-- Image file names CS:GO -->
     <string-array name="mapImages">
         <item>csgo_map_dust</item>
         <item>csgo_map_inferno</item>
@@ -102,17 +92,12 @@
         <item>3</item>
         <item>5</item>
         <item>7</item>
-        <item>9</item>
     </string-array>
 
-    <string-array name="TestTeams">
-        <item>Tosi kovat äijät</item>
-        <item>Ranuan kynäriseura</item>
-        <item>Linnanmaa longshots</item>
-        <item>OAMK ownaajat</item>
-        <item>Tuusula titaanit</item>
-    </string-array>
 
+    <string-array name="Games">
+        <item>Counter-Strike: Global Offensive</item>
+    </string-array>
 
     //api urls
     <string name="addMatchAPI">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/addmatch?IDtournament=%1$s&amp;TeamAname=%2$s&amp;TeamBname=%3$s&amp;Format=%4$d&amp;MatchInfo=%5$s</string>
