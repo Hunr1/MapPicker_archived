@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
-
     private void paivitaLista() {
         ListView listaNakyma = findViewById(R.id.TournamentsList);
         ArrayList<String> listaItemit = new ArrayList<>();

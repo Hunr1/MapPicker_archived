@@ -156,6 +156,7 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
 
     public void readyButton (View v){
 
+        //varmistetaan että tiimit eivät ole samat
         if (!teamBdropdown.getSelectedItem().toString().equals(teamAdropdown.getSelectedItem().toString())){
 
             teamAname = teamAdropdown.getSelectedItem().toString();
@@ -254,404 +255,408 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
         bestOf = Integer.valueOf(bestOfDropdown.getSelectedItem().toString());
         parent.refreshDrawableState();
 
-        //Varmistetaan peli ja että tiimit eivät ole samat
-        if (game.equals("Counter-Strike: Global Offensive")&& !teamBdropdown.getSelectedItem().toString().equals(teamAdropdown.getSelectedItem().toString()))
-        {
-            //Varmistetaan ottelun formaatti
-            if(bestOf == 1)
-            {
-                switch (clickCounter) {
-                    case 0:
-                        pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
-                        action.setText(banActions[2]);
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 1/" + pickedMapName.getText().toString() + "/" + teamBdropdown.getSelectedItem().toString());
-                        break;
+        switch (game){
+            case("Counter-Strike: Global Offensive"):
 
-                    case 1:
-                        pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
-                        action.setText(banActions[3]);
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 2/" + pickedMapName.getText().toString() + "/" + teamAdropdown.getSelectedItem().toString());
-                        break;
+                //Varmistetaan ottelun formaatti
+                if(bestOf == 1)
+                {
+                    switch (clickCounter) {
+                        case 0:
+                            pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
+                            action.setText(banActions[2]);
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 1/" + pickedMapName.getText().toString() + "/" + teamBdropdown.getSelectedItem().toString());
+                            break;
 
-                    case 2:
-                        pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
-                        action.setText(banActions[4]);
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 3/" + pickedMapName.getText().toString() + "/" + teamBdropdown.getSelectedItem().toString());
-                        break;
+                        case 1:
+                            pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
+                            action.setText(banActions[3]);
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 2/" + pickedMapName.getText().toString() + "/" + teamAdropdown.getSelectedItem().toString());
+                            break;
 
-                    case 3:
-                        pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
-                        action.setText(banActions[5]);
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 4/" + pickedMapName.getText().toString() + "/" + teamAdropdown.getSelectedItem().toString());
-                        break;
+                        case 2:
+                            pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
+                            action.setText(banActions[4]);
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 3/" + pickedMapName.getText().toString() + "/" + teamBdropdown.getSelectedItem().toString());
+                            break;
 
-                    case 4:
-                        pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
-                        action.setText(banActions[6]);
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 5/" + pickedMapName.getText().toString() + "/" + teamBdropdown.getSelectedItem().toString());
-                        break;
+                        case 3:
+                            pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
+                            action.setText(banActions[5]);
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 4/" + pickedMapName.getText().toString() + "/" + teamAdropdown.getSelectedItem().toString());
+                            break;
 
-                    case 5:
-                        pickingTeam.setText(getResources().getString(R.string.FinalPick));
-                        action.setText("");
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 6/" + pickedMapName.getText().toString() + "/" + teamAdropdown.getSelectedItem().toString());
-                        break;
+                        case 4:
+                            pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
+                            action.setText(banActions[6]);
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 5/" + pickedMapName.getText().toString() + "/" + teamBdropdown.getSelectedItem().toString());
+                            break;
 
-                    case 6:
-                        pickingTeam.setText(" ");
-                        action.setText(getResources().getString(R.string.PicksDone));
-                        startingSideFrame.setVisibility(View.VISIBLE);
-                        adapter.setPickSide(true);
-                        //Puolten valinta nappien onClick kuuntelijat
-                        CTChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                csgoMaplist.remove(position);
-                                adapter.notifyDataSetChanged();
-                                startingSideFrame.setVisibility(View.INVISIBLE);
+                        case 5:
+                            pickingTeam.setText(getResources().getString(R.string.FinalPick));
+                            action.setText("");
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 6/" + pickedMapName.getText().toString() + "/" + teamAdropdown.getSelectedItem().toString());
+                            break;
 
-                                playedMapSide ="CT/" + teamBdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
+                        case 6:
+                            pickingTeam.setText(" ");
+                            action.setText(getResources().getString(R.string.PicksDone));
+                            startingSideFrame.setVisibility(View.VISIBLE);
+                            adapter.setPickSide(true);
+                            //Puolten valinta nappien onClick kuuntelijat
+                            CTChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    csgoMaplist.remove(position);
+                                    adapter.notifyDataSetChanged();
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
 
-
-                        });
-                        TerroristChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                csgoMaplist.remove(position);
-                                startingSideFrame.setVisibility(View.INVISIBLE);
-                                adapter.notifyDataSetChanged();
+                                    playedMapSide ="CT/" + teamBdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
 
 
-                                playedMapSide ="Terrorist/" + teamBdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-                        });
-                        startingSide.setText(teamBdropdown.getSelectedItem().toString());
-                        break;
+                            });
+                            TerroristChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    csgoMaplist.remove(position);
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
+                                    adapter.notifyDataSetChanged();
+
+
+                                    playedMapSide ="Terrorist/" + teamBdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+                            });
+                            startingSide.setText(teamBdropdown.getSelectedItem().toString());
+                            break;
+                    }
+                    clickCounter++;
                 }
-                clickCounter++;
-            }
-            if(bestOf == 3)
-            {
-                switch (clickCounter) {
-                    case 0:
-                        pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
-                        action.setText(banActions[2]);
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 1/"+pickedMapName.getText().toString()+ "/" +teamBdropdown.getSelectedItem().toString());
-                        break;
+                if(bestOf == 3)
+                {
+                    switch (clickCounter) {
+                        case 0:
+                            pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
+                            action.setText(banActions[2]);
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 1/"+pickedMapName.getText().toString()+ "/" +teamBdropdown.getSelectedItem().toString());
+                            break;
 
-                    case 1:
-                        pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
-                        action.setText(pickActions[1]);
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 2/"+pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString());
-                        break;
+                        case 1:
+                            pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
+                            action.setText(pickActions[1]);
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 2/"+pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString());
+                            break;
 
-                    case 2:
-                        pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
-                        action.setText(pickActions[2]);
-                        startingSideFrame.setVisibility(View.VISIBLE);
-                        adapter.setPickSide(true);
-                        //Puolten valinta nappien onClick kuuntelijat
-                        CTChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                        case 2:
+                            pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
+                            action.setText(pickActions[2]);
+                            startingSideFrame.setVisibility(View.VISIBLE);
+                            adapter.setPickSide(true);
+                            //Puolten valinta nappien onClick kuuntelijat
+                            CTChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
 
-                                csgoMaplist.remove(position);
-                                adapter.notifyDataSetChanged();
-                                startingSideFrame.setVisibility(View.INVISIBLE);
+                                    csgoMaplist.remove(position);
+                                    adapter.notifyDataSetChanged();
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
 
 
-                                playedMapSide ="CT/" + teamAdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
+                                    playedMapSide ="CT/" + teamAdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
 
 
-                        });
-                        TerroristChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                csgoMaplist.remove(position);
-                                startingSideFrame.setVisibility(View.INVISIBLE);
-                                adapter.notifyDataSetChanged();
+                            });
+                            TerroristChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    csgoMaplist.remove(position);
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
+                                    adapter.notifyDataSetChanged();
 
 
-                                playedMapSide = "Terrorist/"+teamAdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-                        });
-                        startingSide.setText(teamAdropdown.getSelectedItem().toString());
-                        break;
+                                    playedMapSide = "Terrorist/"+teamAdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+                            });
+                            startingSide.setText(teamAdropdown.getSelectedItem().toString());
+                            break;
 
-                    case 3:
-                        pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
-                        action.setText(banActions[3]);
-                        startingSideFrame.setVisibility(View.VISIBLE);
-                        adapter.setPickSide(true);
+                        case 3:
+                            pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
+                            action.setText(banActions[3]);
+                            startingSideFrame.setVisibility(View.VISIBLE);
+                            adapter.setPickSide(true);
 
-                        //Puolten valinta nappien onClick kuuntelijat
-                        CTChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                            //Puolten valinta nappien onClick kuuntelijat
+                            CTChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
 
-                                csgoMaplist.remove(position);
-                                adapter.notifyDataSetChanged();
-                                startingSideFrame.setVisibility(View.INVISIBLE);
-
-
-                                playedMapSide = "CT/"+teamBdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 2/"+pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-                        });
-                        TerroristChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                csgoMaplist.remove(position);
-                                adapter.notifyDataSetChanged();
-                                startingSideFrame.setVisibility(View.INVISIBLE);
+                                    csgoMaplist.remove(position);
+                                    adapter.notifyDataSetChanged();
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
 
 
-                                playedMapSide = "Terrorist/"+teamBdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 2/"+ pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-                        });
-                        startingSide.setText(teamBdropdown.getSelectedItem().toString());
-                        break;
-
-                    case 4:
-                        pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
-                        action.setText(banActions[4]);
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 3/"+pickedMapName.getText().toString()+ "/" +teamBdropdown.getSelectedItem().toString());
-                        break;
-
-                    case 5:
-                        pickingTeam.setText(getResources().getString(R.string.FinalPick));
-                        action.setText("");
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 4/"+pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString());
-                        break;
-
-                    case 6:
-
-                        startingSide.setText(getResources().getString(R.string.Knife));
-                        pickingTeam.setText(getResources().getString(R.string.PicksDone));
-                        action.setText("");
-                        csgoMaplist.remove(position);
-                        pickedMaps.add("Tiebreaker/"+pickedMapName.getText().toString());
-                        break;
-                }
-
-                clickCounter++;
+                                    playedMapSide = "CT/"+teamBdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 2/"+pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+                            });
+                            TerroristChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    csgoMaplist.remove(position);
+                                    adapter.notifyDataSetChanged();
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
 
 
-            }
+                                    playedMapSide = "Terrorist/"+teamBdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 2/"+ pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+                            });
+                            startingSide.setText(teamBdropdown.getSelectedItem().toString());
+                            break;
 
-            //Ei käytössä
-            if(bestOf == 5)
-            {
-                switch (clickCounter) {
-                    case 0:
-                        pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
-                        action.setText(banActions[2]);
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 1/"+pickedMapName.getText().toString()+ "/" +teamBdropdown.getSelectedItem().toString());
-                        break;
+                        case 4:
+                            pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
+                            action.setText(banActions[4]);
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 3/"+pickedMapName.getText().toString()+ "/" +teamBdropdown.getSelectedItem().toString());
+                            break;
 
-                    case 1:
-                        pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
-                        action.setText(pickActions[1]);
-                        csgoMaplist.remove(position);
-                        adapter.notifyDataSetChanged();
-                        pickedMaps.add("Ban 2/"+pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString());
-                        break;
+                        case 5:
+                            pickingTeam.setText(getResources().getString(R.string.FinalPick));
+                            action.setText("");
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 4/"+pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString());
+                            break;
 
-                    case 2:
-                        pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
-                        action.setText(pickActions[2]);
+                        case 6:
 
-                        startingSideFrame.setVisibility(View.VISIBLE);
-                        adapter.setPickSide(true);
-                        //Puolten valinta nappien onClick kuuntelijat
-                        CTChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                            startingSide.setText(getResources().getString(R.string.Knife));
+                            pickingTeam.setText(getResources().getString(R.string.PicksDone));
+                            action.setText("");
+                            csgoMaplist.remove(position);
+                            pickedMaps.add("Tiebreaker/"+pickedMapName.getText().toString());
+                            break;
+                    }
 
-                                playedMapSide = teamAdropdown.getSelectedItem().toString() + "/CT";
-                                csgoMaplist.remove(position);
-                                adapter.notifyDataSetChanged();
-                                startingSideFrame.setVisibility(View.INVISIBLE);
+                    clickCounter++;
 
-
-                                playedMapSide ="CT/" + teamAdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-                        });
-                        TerroristChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                csgoMaplist.remove(position);
-                                startingSideFrame.setVisibility(View.INVISIBLE);
-                                adapter.notifyDataSetChanged();
-
-                                playedMapSide = "Terrorist/"+teamAdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-                        });
-
-                        startingSide.setText(teamAdropdown.getSelectedItem().toString());
-                        break;
-
-                    case 3:
-                        pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
-                        action.setText(pickActions[3]);
-                        startingSideFrame.setVisibility(View.VISIBLE);
-                        adapter.setPickSide(true);
-                        //Puolten valinta nappien onClick kuuntelijat
-                        CTChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                                csgoMaplist.remove(position);
-                                adapter.notifyDataSetChanged();
-                                startingSideFrame.setVisibility(View.INVISIBLE);
-
-
-                                playedMapSide ="CT/" + teamBdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 2/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-                        });
-                        TerroristChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                csgoMaplist.remove(position);
-                                adapter.notifyDataSetChanged();
-                                startingSideFrame.setVisibility(View.INVISIBLE);
-
-
-                                playedMapSide ="Terrorist/" + teamBdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 2/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-                        });
-
-                        startingSide.setText(teamBdropdown.getSelectedItem().toString());
-                        break;
-
-                    case 4:
-                        pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
-                        action.setText(pickActions[4]);
-
-                        startingSideFrame.setVisibility(View.VISIBLE);
-                        adapter.setPickSide(true);
-                        //Puolten valinta nappien onClick kuuntelijat
-                        CTChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                                csgoMaplist.remove(position);
-                                adapter.notifyDataSetChanged();
-                                startingSideFrame.setVisibility(View.INVISIBLE);
-
-                                playedMapSide ="CT/" + teamAdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 3/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-
-
-                        });
-                        TerroristChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                csgoMaplist.remove(position);
-                                startingSideFrame.setVisibility(View.INVISIBLE);
-                                adapter.notifyDataSetChanged();
-
-
-                                playedMapSide ="Terrorist/" + teamAdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 3/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-                        });
-
-                        startingSide.setText(teamAdropdown.getSelectedItem().toString());
-                        break;
-
-                    case 5:
-                        pickingTeam.setText(getResources().getString(R.string.FinalPick));
-                        action.setText("");
-                        startingSideFrame.setVisibility(View.VISIBLE);
-                        adapter.setPickSide(true);
-                        //Puolten valinta nappien onClick kuuntelijat
-                        CTChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                csgoMaplist.remove(position);
-                                adapter.notifyDataSetChanged();
-                                startingSideFrame.setVisibility(View.INVISIBLE);
-
-
-                                playedMapSide ="CT/" + teamBdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 4/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-                        });
-                        TerroristChoose.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                csgoMaplist.remove(position);
-                                adapter.notifyDataSetChanged();
-                                startingSideFrame.setVisibility(View.INVISIBLE);
-
-
-                                playedMapSide ="Terrorist/" + teamBdropdown.getSelectedItem().toString();
-                                pickedMaps.add("Pick 4/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
-                                adapter.setPickSide(false);
-                            }
-                        });
-                        startingSide.setText(teamBdropdown.getSelectedItem().toString());
-                        break;
-
-                    case 6:
-                        startingSide.setText(getResources().getString(R.string.Knife));
-                        pickingTeam.setText(getResources().getString(R.string.PicksDone));
-                        action.setText("");
-                        csgoMaplist.remove(position);
-                        pickedMaps.add("Tiebreaker/"+pickedMapName.getText().toString());
-                        break;
 
                 }
-                clickCounter++;
-            }
+
+                //Ei käytössä
+                if(bestOf == 5)
+                {
+                    switch (clickCounter) {
+                        case 0:
+                            pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
+                            action.setText(banActions[2]);
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 1/"+pickedMapName.getText().toString()+ "/" +teamBdropdown.getSelectedItem().toString());
+                            break;
+
+                        case 1:
+                            pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
+                            action.setText(pickActions[1]);
+                            csgoMaplist.remove(position);
+                            adapter.notifyDataSetChanged();
+                            pickedMaps.add("Ban 2/"+pickedMapName.getText().toString()+ "/" +teamAdropdown.getSelectedItem().toString());
+                            break;
+
+                        case 2:
+                            pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
+                            action.setText(pickActions[2]);
+
+                            startingSideFrame.setVisibility(View.VISIBLE);
+                            adapter.setPickSide(true);
+                            //Puolten valinta nappien onClick kuuntelijat
+                            CTChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    playedMapSide = teamAdropdown.getSelectedItem().toString() + "/CT";
+                                    csgoMaplist.remove(position);
+                                    adapter.notifyDataSetChanged();
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
+
+
+                                    playedMapSide ="CT/" + teamAdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+                            });
+                            TerroristChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    csgoMaplist.remove(position);
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
+                                    adapter.notifyDataSetChanged();
+
+                                    playedMapSide = "Terrorist/"+teamAdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 1/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+                            });
+
+                            startingSide.setText(teamAdropdown.getSelectedItem().toString());
+                            break;
+
+                        case 3:
+                            pickingTeam.setText(teamBdropdown.getSelectedItem().toString());
+                            action.setText(pickActions[3]);
+                            startingSideFrame.setVisibility(View.VISIBLE);
+                            adapter.setPickSide(true);
+                            //Puolten valinta nappien onClick kuuntelijat
+                            CTChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    csgoMaplist.remove(position);
+                                    adapter.notifyDataSetChanged();
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
+
+
+                                    playedMapSide ="CT/" + teamBdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 2/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+                            });
+                            TerroristChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    csgoMaplist.remove(position);
+                                    adapter.notifyDataSetChanged();
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
+
+
+                                    playedMapSide ="Terrorist/" + teamBdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 2/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+                            });
+
+                            startingSide.setText(teamBdropdown.getSelectedItem().toString());
+                            break;
+
+                        case 4:
+                            pickingTeam.setText(teamAdropdown.getSelectedItem().toString());
+                            action.setText(pickActions[4]);
+
+                            startingSideFrame.setVisibility(View.VISIBLE);
+                            adapter.setPickSide(true);
+                            //Puolten valinta nappien onClick kuuntelijat
+                            CTChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    csgoMaplist.remove(position);
+                                    adapter.notifyDataSetChanged();
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
+
+                                    playedMapSide ="CT/" + teamAdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 3/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+
+
+                            });
+                            TerroristChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    csgoMaplist.remove(position);
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
+                                    adapter.notifyDataSetChanged();
+
+
+                                    playedMapSide ="Terrorist/" + teamAdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 3/"+pickedMapName.getText().toString()+ "/" + teamBdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+                            });
+
+                            startingSide.setText(teamAdropdown.getSelectedItem().toString());
+                            break;
+
+                        case 5:
+                            pickingTeam.setText(getResources().getString(R.string.FinalPick));
+                            action.setText("");
+                            startingSideFrame.setVisibility(View.VISIBLE);
+                            adapter.setPickSide(true);
+                            //Puolten valinta nappien onClick kuuntelijat
+                            CTChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    csgoMaplist.remove(position);
+                                    adapter.notifyDataSetChanged();
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
+
+
+                                    playedMapSide ="CT/" + teamBdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 4/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+                            });
+                            TerroristChoose.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    csgoMaplist.remove(position);
+                                    adapter.notifyDataSetChanged();
+                                    startingSideFrame.setVisibility(View.INVISIBLE);
+
+
+                                    playedMapSide ="Terrorist/" + teamBdropdown.getSelectedItem().toString();
+                                    pickedMaps.add("Pick 4/"+pickedMapName.getText().toString()+ "/" + teamAdropdown.getSelectedItem().toString()+"/"+ playedMapSide);
+                                    adapter.setPickSide(false);
+                                }
+                            });
+                            startingSide.setText(teamBdropdown.getSelectedItem().toString());
+                            break;
+
+                        case 6:
+                            startingSide.setText(getResources().getString(R.string.Knife));
+                            pickingTeam.setText(getResources().getString(R.string.PicksDone));
+                            action.setText("");
+                            csgoMaplist.remove(position);
+                            pickedMaps.add("Tiebreaker/"+pickedMapName.getText().toString());
+                            break;
+
+                    }
+                    clickCounter++;
+                }
+                break;
+            case("StarCraft II"):
+                //BLAAA
+                break;
         }
     }
 }
