@@ -189,8 +189,7 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
             }
         }
 
-        ArrayList<String> mapInfo;
-        mapInfo = holder.match.getMapInfo();
+
 
         holder.Bo3teamAMapScore.setText(holder.match.getTeamAMapScore());
         holder.Bo3teamBMapScore.setText(holder.match.getTeamBMapScore());
@@ -206,14 +205,14 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
         holder.Bo3pick3_teamA_rounds.setText(holder.match.getTeam_A_map3_score());
         holder.Bo3pick3_teamB_rounds.setText(holder.match.getTeam_B_map3_score());
 
-        //ArrayList<String> mapInfo;
+        ArrayList<String> mapInfo;
         ArrayList<String> action = new ArrayList<>();
         ArrayList<String> mapName = new ArrayList<>();
         ArrayList<String> whoPickedMap = new ArrayList<>();
         ArrayList<String> side = new ArrayList<>();
         ArrayList<String> whoPickedSide = new ArrayList<>();
 
-        //mapInfo = holder.match.getMapInfo();
+        mapInfo = holder.match.getMapInfo();
 
         for(int counter = 0;counter < mapInfo.size(); counter++){
             String[] splittedMapInfo = mapInfo.get(counter).split("/");

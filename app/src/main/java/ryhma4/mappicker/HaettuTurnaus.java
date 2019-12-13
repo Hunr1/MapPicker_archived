@@ -3,12 +3,16 @@ package ryhma4.mappicker;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -30,11 +34,9 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
     private int tourID;
     private String game;
 
-
     ListView haettuTurnausListView;
 
     ArrayList<Match> matches;
-
     HaettuTurnausCustomAdapter adapter;
 
     @Override
@@ -48,6 +50,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
         game = getIntent().getStringExtra("GAME");
         adapter = new HaettuTurnausCustomAdapter(this, R.layout.match_list_csgo, matches, tourID);
         haettuTurnausListView.setAdapter(adapter);
+        findViewById(R.id.updateBtn).setOnClickListener(this);
 
         if (tourID >= 0) {
             Tournament tournament = TournamentApplication.getEngine().tournamentByID(tourID);
@@ -100,6 +103,12 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("GAME",game);
                 startActivity(intent);
 
+                break;
+
+            case R.id.updateBtn:
+                adapter.clear();
+                makeApiCall(tourID);
+                Toast.makeText(getApplicationContext(),"Scores updated",Toast.LENGTH_SHORT).show();
                 break;
         }
     }

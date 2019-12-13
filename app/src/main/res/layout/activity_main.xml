@@ -29,11 +29,23 @@
         app:layout_constraintStart_toEndOf="@id/EditTextSearch"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/updateBtn"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/updatebutton"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toTopOf="@id/TournamentsList"
+        app:layout_constraintLeft_toRightOf="@id/TvListViewLabel"
+         />
+
     <TextView
         android:id="@+id/TvListViewLabel"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/EditTextSearch"
+        app:layout_constraintBottom_toTopOf="@id/TournamentsList"
+        app:layout_constraintLeft_toLeftOf="parent"
         android:paddingTop="10dp"
         android:text="@string/ListviewLabelText"/>
 

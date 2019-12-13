@@ -9,13 +9,29 @@
     android:layout_height="wrap_content"
     android:layout_weight="0.8"
     android:orientation="vertical">
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+    <TextView
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/tournamentID"
         android:textSize="20sp"
-        android:gravity="start"/>
+        android:gravity="start"
+        android:layout_weight="0.9"/>
 
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:id="@+id/updateBtn"
+        android:layout_gravity="right"
+        android:layout_weight="0.1"
+        android:background="@drawable/updatebutton"
+        />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

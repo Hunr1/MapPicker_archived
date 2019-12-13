@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         findViewById(R.id.newTournamentBtn).setOnClickListener(this);
         findViewById(R.id.searchBtn).setOnClickListener(this);
+        findViewById(R.id.updateBtn).setOnClickListener(this);
         ListView tournamentList = findViewById(R.id.TournamentsList);
         tournamentList.setOnItemClickListener(this);
         tournamentEngine = TournamentApplication.getEngine();
@@ -83,6 +84,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
 
+            case R.id.updateBtn:
+                getFromDB =  new DatabaseAsyncTask(this);
+                getFromDB.setCallback(this);
+                getFromDB.execute("");
+                Toast.makeText(getApplicationContext(),"Tournament list updated",Toast.LENGTH_SHORT).show();
+                break;
         }
     }
 
