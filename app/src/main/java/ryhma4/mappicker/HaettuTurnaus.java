@@ -49,8 +49,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
         Log.d("Applikaatio","On create");
         tourID = getIntent().getIntExtra("TOURNAMENT_ID", -1);
         game = getIntent().getStringExtra("GAME");
-        Log.d("applikaatio","Haettu turnaus peli nimi = " + game);
-        adapter = new HaettuTurnausCustomAdapter(this, R.layout.match_list_csgo, matches);
+        adapter = new HaettuTurnausCustomAdapter(this, R.layout.match_list_csgo, matches, tourID);
         haettuTurnausListView.setAdapter(adapter);
 
         if (tourID >= 0) {
@@ -144,6 +143,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
                             match.setTeamAname(matchObject.getString("teamAname"));
                             match.setTeamBname(matchObject.getString("teamBname"));
                             match.setGameFormat(matchObject.getString("format"));
+                            match.setMatchID(matchObject.getInt("idmatch"));
 
                             List<String> pickedMaps = Arrays.asList(matchObject.getString("matchInfo").split("\\|"));
 

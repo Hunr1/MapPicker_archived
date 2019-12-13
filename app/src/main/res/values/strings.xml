@@ -94,6 +94,7 @@
         <item>7</item>
     </string-array>
 
+
     <string-array name="Games">
         <item>Counter-Strike: Global Offensive</item>
     </string-array>
@@ -101,5 +102,7 @@
     //api urls
     <string name="addMatchAPI">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/addmatch?IDtournament=%1$s&amp;TeamAname=%2$s&amp;TeamBname=%3$s&amp;Format=%4$d&amp;MatchInfo=%5$s</string>
     <string name="addTournamentAPI">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/addnewtournament?TournamentName=%1$s&amp;TournamentDefaultFormat=%2$s&amp;Teams=%3$s&amp;GameName=%4$s</string>
+    <string name="insertPick1Scores">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/savescores/insertpick1scores?IDmatch=%1$d&amp;IDtournament=%2$s&amp;teamApick1Score=%3$s&amp;teamBpick1Score=%4$s</string>
+    <string name="insertMapScores">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/savescores/insertmapscores?IDmatch=%1$d&amp;IDtournament=%2$s&amp;teamAMapScore=%3$d&amp;teamBMapScore=%4$d</string>
     <string name="getMatchesAPI">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/getmatchesbytournamentid?IDtournament=%1$s</string>
 </resources>
