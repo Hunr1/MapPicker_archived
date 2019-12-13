@@ -105,4 +105,5 @@
     <string name="insertPickXScores">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/savescores/insertpick%1$dscores?IDmatch=%2$d&amp;IDtournament=%3$s&amp;teamApick%4$dScore=%5$s&amp;teamBpick%6$dScore=%7$s</string>
     <string name="insertMapScores">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/savescores/insertmapscores?IDmatch=%1$d&amp;IDtournament=%2$s&amp;teamAMapScore=%3$s&amp;teamBMapScore=%4$s</string>
     <string name="getMatchesAPI">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/getmatchesbytournamentid?IDtournament=%1$s</string>
+    <string name="getAllTournaments">https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/getalltournamentids</string>
 </resources>

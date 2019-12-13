@@ -1,5 +1,7 @@
 package ryhma4.mappicker;
 
+
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -14,7 +16,12 @@ import javax.net.ssl.HttpsURLConnection;
 public class DatabaseAsyncTask extends AsyncTask< String, Integer, Boolean> {
 
     private String result;
+    private Context context;
 
+    DatabaseAsyncTask(Context context)
+    {
+        this.context = context;
+    }
     interface OnSleepProgressUpdate {
         void sleepDone();
     }
@@ -43,7 +50,7 @@ public class DatabaseAsyncTask extends AsyncTask< String, Integer, Boolean> {
 
     private void executeTask() {
         try {
-            URL url = new URL("https://iqkoa7ylxc.execute-api.eu-north-1.amazonaws.com/mapPicker/getalltournamentids");
+            URL url = new URL(context.getResources().getString(R.string.getAllTournaments));
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
             InputStream stream = urlConnection.getInputStream();
             result = fromStream(stream);

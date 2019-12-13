@@ -23,7 +23,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, DatabaseAsyncTask.OnSleepProgressUpdate{
 
-    private DatabaseAsyncTask getFromDB = new DatabaseAsyncTask();
+    private DatabaseAsyncTask getFromDB = new DatabaseAsyncTask(this);
     TournamentEngine tournamentEngine;
 
     @Override

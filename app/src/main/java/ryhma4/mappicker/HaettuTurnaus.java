@@ -1,26 +1,23 @@
 package ryhma4.mappicker;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -144,8 +141,8 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
                             match.setTeamBname(matchObject.getString("teamBname"));
                             match.setGameFormat(matchObject.getString("format"));
                             match.setMatchID(matchObject.getInt("idmatch"));
-
                             List<String> pickedMaps = Arrays.asList(matchObject.getString("matchInfo").split("\\|"));
+                            setScores(match, match.getGameFormat(), matchObject);
 
                             for (String s: pickedMaps
                                  ) {
@@ -182,6 +179,29 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
         queue.add(addTournamentRequest);
     }
 
+    //Asetetaan karttavoitot/karttakohtaiset pisteet
+    public  void setScores(Match match, String gameFormat, JSONObject matchObject) throws JSONException {
+        switch (gameFormat)
+        {
+            case "1":
+                match.setTeamAMapScore(matchObject.getString("team_A_MapScore"));
+                match.setTeamBMapScore(matchObject.getString("team_B_MapScore"));
+                match.setTeam_A_map1_score(matchObject.getString("team_A_Pick_1_Score"));
+                match.setTeam_B_map1_score(matchObject.getString("team_B_Pick_1_Score"));
+                break;
+
+            case "3":
+                match.setTeamAMapScore(matchObject.getString("team_A_MapScore"));
+                match.setTeamBMapScore(matchObject.getString("team_B_MapScore"));
+                match.setTeam_A_map1_score(matchObject.getString("team_A_Pick_1_Score"));
+                match.setTeam_B_map1_score(matchObject.getString("team_B_Pick_1_Score"));
+                match.setTeam_A_map2_score(matchObject.getString("team_A_Pick_2_Score"));
+                match.setTeam_B_map2_score(matchObject.getString("team_B_Pick_2_Score"));
+                match.setTeam_A_map3_score(matchObject.getString("team_A_Pick_3_Score"));
+                match.setTeam_B_map3_score(matchObject.getString("team_B_Pick_3_Score"));
+                break;
+        }
+    }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)
     {
