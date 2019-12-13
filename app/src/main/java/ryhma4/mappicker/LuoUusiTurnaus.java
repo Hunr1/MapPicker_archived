@@ -3,7 +3,6 @@ package ryhma4.mappicker;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +26,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -44,7 +42,6 @@ public class LuoUusiTurnaus extends AppCompatActivity implements View.OnClickLis
     EditText etTournamentName;
     Spinner gameName;
     Spinner gameFormat;
-    String selectedameName;
     ArrayAdapter<String> adapter;
     ArrayList<String> listTeams;
 

@@ -90,25 +90,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onItemClick(AdapterView<?> adapterView, View view, int index, long l) {
         Intent intent = new Intent(this, HaettuTurnaus.class);
         intent.putExtra("TOURNAMENT_ID", index);
+        intent.putExtra("GAME", tournamentEngine.tournamentByID(index).getGameName());
         startActivity(intent);
     }
 
-   /* public Tournament luoTestiturnaus()
-    {
-        Tournament testiTurnee = new Tournament();
-        ArrayList<String> maps = new ArrayList<>();
-        maps.add("Oulu");
-
-        testiTurnee.setTeam("Team 1");
-        testiTurnee.setTeam("Team 2");
-        testiTurnee.setTournamentID("testi1");
-        testiTurnee.setGameName("Counter Strike");
-        testiTurnee.setGameFormat("Best of 3");
-        testiTurnee.setMaps(maps);
-
-        return testiTurnee;
-
-    }*/
 
     private void paivitaLista() {
         ListView listaNakyma = findViewById(R.id.TournamentsList);
@@ -145,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 fromDB.setTournamentID(obj.getString("Tournament ID"));
                 fromDB.setTournamentName(obj.getString("Tournament name"));
                 fromDB.setGameFormat(obj.getString("Tournament format"));
+                fromDB.setGameName(obj.getString("Game"));
 
 
                 ArrayList<String> teams = new  ArrayList<>(Arrays.asList(obj.getString("Teams").split("/")));
