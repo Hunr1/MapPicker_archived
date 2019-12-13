@@ -1,7 +1,18 @@
 package ryhma4.mappicker;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -144,6 +155,101 @@ public class Match extends Game implements Serializable,Parcelable {
 
     public void setTeamBname(String teamBname) {
         this.teamBname = teamBname;
+    }
+
+    public void updateScore(final Context c, int mapNumber, String tournID) {
+
+       // Tournament tournament = TournamentApplication.getEngine().tournamentByID(tournID);
+       // String tid = tournament.getTournamentID();
+        String url;
+        String map_scoreA = this.getTeam_A_map1_score();
+        String map_scoreB = this.getTeam_B_map1_score();
+
+        int matchID = this.getMatchID();
+
+        switch (mapNumber) {
+
+            case 1:
+
+                url = c.getString(R.string.insertPickXScores, mapNumber, matchID, tournID, mapNumber, map_scoreA, mapNumber, map_scoreB);
+                url = Uri.encode(url, "@#&=*+-_.,:!?()/~'%");
+
+                break;
+
+            case 2:
+
+                map_scoreA = this.getTeam_A_map2_score();
+                map_scoreB = this.getTeam_B_map2_score();
+
+                url = c.getString(R.string.insertPickXScores, mapNumber, matchID, tournID, mapNumber, map_scoreA, mapNumber, map_scoreB);
+                url = Uri.encode(url, "@#&=*+-_.,:!?()/~'%");
+                break;
+
+            case 3:
+
+                map_scoreA = this.getTeam_A_map3_score();
+                map_scoreB = this.getTeam_B_map3_score();
+
+                url = c.getString(R.string.insertPickXScores, mapNumber, matchID, tournID, mapNumber, map_scoreA, mapNumber, map_scoreB);
+                url = Uri.encode(url, "@#&=*+-_.,:!?()/~'%");
+                break;
+
+            default:
+                url = c.getString(R.string.insertPickXScores, mapNumber, matchID, tournID, mapNumber, map_scoreA, mapNumber, map_scoreB);
+                url = Uri.encode(url, "@#&=*+-_.,:!?()/~'%");
+                break;
+
+        }
+
+        RequestQueue queue = Volley.newRequestQueue(c);
+        Log.d("HTCAURL", url );
+
+        StringRequest insertScore = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("Stringrequest", response);
+                Toast.makeText(c, "Score saved", Toast.LENGTH_LONG).show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("VolleyError", error.toString());
+            }
+        });
+
+        queue.add(insertScore);
+
+
+    }
+    public void updateMapScore (final Context c, String tournID){
+
+        String map_scoreA = this.getTeamAMapScore();
+        String map_scoreB = this.getTeamBMapScore();
+        int matchID = this.getMatchID();
+        String url = c.getString(R.string.insertMapScores, matchID, tournID, map_scoreA, map_scoreB);
+
+        url = Uri.encode(url, "@#&=*+-_.,:!?()/~'%");
+
+        RequestQueue queue = Volley.newRequestQueue(c);
+        Log.d("HTCAURL", url );
+
+        StringRequest insertScore = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("Stringrequest", response);
+                Toast.makeText(c, "Score saved", Toast.LENGTH_LONG).show();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("VolleyError", error.toString());
+            }
+        });
+
+        queue.add(insertScore);
+
     }
 
 

@@ -419,14 +419,15 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
             @Override
             public void onClick(View view) {
 
-                String mapScoreA = holder.match.getTeamAMapScore();
-                String mapScoreB = holder.match.getTeamAMapScore();
+                Tournament tournament = TournamentApplication.getEngine().tournamentByID(tournID);
+                String tid = tournament.getTournamentID();
 
-                String map1_scoreA  = holder.match.getTeam_A_map1_score();
-                String map1_scoreB = holder.match.getTeam_B_map1_score();
-                //..
+                holder.match.updateScore(getContext(), 1, tid );
+                holder.match.updateScore(getContext(), 2, tid );
+                holder.match.updateScore(getContext(), 3, tid );
 
-                //Log.d("applikaatio","Tallennetaan tietokantaan scoret " + map1_scoreA + " ja " + map1_scoreB);
+                holder.match.updateMapScore(getContext(), tid);
+
             }
         });
 
@@ -436,51 +437,12 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
             @Override
             public void onClick(View view) {
 
-                try {
-                String mapScoreA = holder.match.getTeamAMapScore();
-                String mapScoreB = holder.match.getTeamAMapScore();
-
-                Log.d("pickscore", holder.match.getTeam_A_map1_score());
-                Log.d("pickscores2", holder.match.getTeam_B_map1_score() + " " + holder.match.getMatchID().toString());
-
                 Tournament tournament = TournamentApplication.getEngine().tournamentByID(tournID);
                 String tid = tournament.getTournamentID();
 
-              //  String map1scoreA = holder.match.getTeam_A_map1_score();
-               // String map1scoreB = holder.match.getTeam_B_map1_score();
-
-                    String map1_scoreA = holder.match.getTeam_A_map1_score();
-                    String map1_scoreB = holder.match.getTeam_B_map1_score();
-
-                int matchID = holder.match.getMatchID();
-                String url = getContext().getString(R.string.insertPick1Scores, matchID, tid, map1_scoreA, map1_scoreB);
-
-                url = Uri.encode(url, "@#&=*+-_.,:!?()/~'%");
-
-                RequestQueue queue = Volley.newRequestQueue(getContext());
-                Log.d("HTCAURL", url );
-
-                StringRequest insertScore = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("Stringrequest", response);
-                        Toast.makeText(getContext(), "Score saved", Toast.LENGTH_LONG).show();
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("VolleyError", error.toString());
-                    }
-                });
-
-                queue.add(insertScore);
-
-             //  Log.d("applikaatio","Tallennetaan tietokantaan scoret " + map1scoreA + " ja " + map1scoreB);
-            }  catch (Exception e) {
-                Log.d("Errorr", e.toString());
+                holder.match.updateScore(getContext(), 1, tid );
             }
-        }});
+        });
 
 
 
@@ -693,6 +655,8 @@ public class HaettuTurnausCustomAdapter extends ArrayAdapter<Match> {
 
         EditText Bo1pick1_teamA_rounds;
         EditText Bo1pick1_teamB_rounds;
+
+
 
     }
 
