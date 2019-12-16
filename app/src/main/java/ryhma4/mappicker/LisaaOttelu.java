@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -234,13 +235,27 @@ public class LisaaOttelu extends AppCompatActivity implements AdapterView.OnItem
         });
         queue.add(addMatchRequest);
 
-        //palauttaa luodun uuden Match olion HaettuTurnaus activityyn
+        //palauttaa pelin nimen ja turnausID sijainnin turnaus taulukossa HaettuTurnaus activityyn ja sulkee LisaaOttelu activityn
         Intent i = new Intent(LisaaOttelu.this, HaettuTurnaus.class);
         i.putExtra("TOURNAMENT_ID", tourID);
         i.putExtra("GAME",game);
         startActivity(i);
+        finish();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            Intent i = new Intent(LisaaOttelu.this, HaettuTurnaus.class);
+            i.putExtra("TOURNAMENT_ID", tourID);
+            i.putExtra("GAME",game);
+            startActivity(i);
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     public void onItemClick(AdapterView parent, View v, final int position, long id) {
 

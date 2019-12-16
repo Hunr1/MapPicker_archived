@@ -85,7 +85,7 @@ public class HaettuTurnaus extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("TOURNAMENT_ID", tourID );
                 intent.putExtra("GAME",game);
                 startActivity(intent);
-
+                finish();
                 break;
 
             case R.id.updateBtn:
